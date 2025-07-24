@@ -1,0 +1,29 @@
+ CREATE VIEW [cus].[v_SALES_HISTORY] AS
+WITH cte AS
+(
+    SELECT
+        TRANSACTION_ID,
+        ITEM_NO,
+        LOCATION_NO,
+        [DATE],
+        SALE_QTY,
+        CUSTOMER_NO,
+        REFERENCE_NO,
+        ROW_NUMBER() OVER (ORDER BY (SELECT NULL)) AS RN
+    FROM [cus].[AGR_SALES_HISTORY]
+)
+SELECT
+    CASE
+        WHEN TRY_CONVERT(BIGINT, cte.TRANSACTION_ID) IS NOT NULL
+             THEN TRY_CONVERT(BIGINT, cte.TRANSACTION_ID)
+        ELSE 
+             cte.RN
+    END AS [TRANSACTION_ID],
+    CAST(cte.ITEM_NO AS NVARCHAR(255))            AS [ITEM_NO],
+    CAST(cte.LOCATION_NO AS NVARCHAR(255))        AS [LOCATION_NO],
+    TRY_CONVERT(DATE, cte.[DATE])                 AS [DATE],
+    CAST(ISNULL(cte.SALE_QTY, 0) AS DECIMAL(18,4)) AS [SALE],
+    CAST(ISNULL(cte.CUSTOMER_NO, '') AS NVARCHAR(255))   AS [CUSTOMER_NO],
+    CAST(ISNULL(cte.REFERENCE_NO, '') AS NVARCHAR(255))  AS [REFERENCE_NO],
+    CAST(0 AS BIT)                                AS [IS_EXCLUDED]
+FROM cte

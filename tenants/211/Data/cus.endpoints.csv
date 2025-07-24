@@ -1,0 +1,10 @@
+id,step_name,endpoint,task_type,source_schema,source_table,target_schema,target_table,endpoint_filter,priority,is_active,post_sql,where_sql,collectionReference,Key
+1,"Item","/api/Inventory/Search",0,,,"cus","Inventory","{}",1,True,,,,"result"
+2,"Products","/api/Products/Scroll",0,,,"cus","Products","{}",2,True,,,,"result"
+3,"Categories","/api/ProductCategories/ScrollSearch",0,,,"cus","Categories","{}",3,True,,,,"result"
+4,"Orders","/api/Orders/Scroll",0,,,"cus","OrdersLines","{}",4,True,,,,"result"
+5,"Vendor","/api/Suppliers/Search",0,,,"cus","Suppliers","{\"take\": 1000}",5,True,,,,"result"
+6,"PurchaseOrders","/api/PurchaseOrders/Scroll",0,,,"cus","PurchaseOrders","{}",5,True,,,,"result"
+7,"Location","/api/Stores",0,,,"cus","Store","{}",7,True,,,,"result"
+8,"Customers","/api/BusinessCustomers/Search",0,,,"cus","Customers","{\"take\": 5000}",8,True,,,,"result"
+9,"PurchaseOrderDeliveries","/api/Deliveries/Search",0,,,"cus","PurchaseOrdersDeliveries","{\"take\": 5000}",9,True,,,,"result"

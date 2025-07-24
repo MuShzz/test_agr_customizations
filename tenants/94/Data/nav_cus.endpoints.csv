@@ -1,0 +1,6 @@
+id,step_name,endpoint,task_type,db_schema,db_table,priority,is_active,pre_sql_exec,pre_sql,select_sql,from_sql,where_sql,post_sql
+1,"Items","Item",0,"nav","Item",1,True,,,,,"description not in ('Sleði í HP590-EKKI NOTA')",
+11,"ItemUnitOfMeasure","Item Unit of Measure",0,"nav","ItemUnitofMeasure",11,True,,,,,"[Item No_] not like '%36839%'",
+50001,"CustomColumns_Vendor","Vendor",0,"nav_cus","CustomColumns_Vendor",50001,True,,,,,,
+50002,"CustomColumns_DimensionValue","Dimension Value",0,"nav_cus","CustomColumns_DimensionValue",50002,True,,,,,,
+50003,"cusItemExtraInfo","Item",0,"nav_cus","ItemExtraInfo",50003,True,,,,,"description not in ('Sleði í HP590-EKKI NOTA')",

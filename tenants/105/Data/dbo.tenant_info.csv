@@ -1,0 +1,2 @@
+tenant_id,tenant_name,erp_setup,erp_system,schema_selection,sql_framework,version
+105,"Partner Safety","Custom ERP","BC Public Cloud","bc_rest",,0

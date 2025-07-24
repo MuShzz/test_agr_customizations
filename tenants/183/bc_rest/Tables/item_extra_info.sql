@@ -1,0 +1,21 @@
+CREATE TABLE [bc_rest_cus].[item_extra_info] (
+    [No] NVARCHAR(20) NOT NULL,
+    [bc1_ItemHeaderID] NVARCHAR(200) NOT NULL,
+    [Description] NVARCHAR(255) NULL,
+    [bc1_ItemVariant1Name] NVARCHAR(255) NULL,
+    [bc1_ItemVariant1ID] NVARCHAR(50) NULL,
+    [bc1_ItemVariant2ID] NVARCHAR(50) NULL,
+    [bc1_ItemVariant2Name] NVARCHAR(255) NULL,
+    [bc1_calcItemStatGroupDesc] NVARCHAR(100) NULL,
+    [bc1_calcItemStatGroup2Desc] NVARCHAR(100) NULL,
+    [bc1_calcItemStatGroup3Desc] NVARCHAR(100) NULL,
+    [bc1_calcItemStatGroup5Desc] NVARCHAR(100) NULL,
+    [bc1_calcItemStatGroup4desc] NVARCHAR(100) NULL,
+    [trm_Item_Type] NVARCHAR(100) NULL,
+    [Gen_Prod_Posting_Group] NVARCHAR(100) NULL,
+    [Replenishment_System] NVARCHAR(100) NULL,
+    [bc1_ItemVariant1DimName] NVARCHAR(50) NULL,
+    [bc1_ItemVariant2DimName] NVARCHAR(50) NULL,
+    [Inventory_Posting_Group] NVARCHAR(100) NULL,
+    CONSTRAINT [pk_bc_rest_cus_item_extra_info] PRIMARY KEY (No)
+);

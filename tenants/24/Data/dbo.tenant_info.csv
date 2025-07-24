@@ -1,0 +1,2 @@
+tenant_id,tenant_name,erp_setup,erp_system,schema_selection,sql_framework,version
+24,"Lope Group","Bc Nav Sql On-Prem","BC 14-16","bc_sql",,0

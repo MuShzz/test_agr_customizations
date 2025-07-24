@@ -1,0 +1,3 @@
+id,step_name,endpoint,task_type,db_schema,db_table,endpoint_filter,priority,is_active,post_sql
+29,"AssemblyHeader","AGRAssemblyHeader",0,"bc_rest_cus","assembly_header",,29,True,
+30,"AssemblyLine","AGRAssemblyLine",0,"bc_rest_cus","assembly_line",,30,True,

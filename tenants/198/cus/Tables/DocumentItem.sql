@@ -1,0 +1,20 @@
+CREATE TABLE [cus].[DocumentItem] (
+    [MaterialDocumentYear] NVARCHAR(128) NULL,
+    [MaterialDocument] NVARCHAR(128) NOT NULL,
+    [MaterialDocumentItem] NVARCHAR(128) NOT NULL,
+    [Material] NVARCHAR(128) NULL,
+    [Plant] NVARCHAR(128) NULL,
+    [StorageLocation] NVARCHAR(128) NULL,
+    [InventoryStockType] NVARCHAR(128) NULL,
+    [MaterialBaseUnit] NVARCHAR(128) NULL,
+    [QuantityInBaseUnit] NVARCHAR(128) NULL,
+    [GoodsMovementType] NVARCHAR(128) NULL,
+    [EntryUnit] NVARCHAR(128) NULL,
+    [QuantityInEntryUnit] NVARCHAR(128) NULL,
+    [InventorySpecialStockType] NVARCHAR(100) NULL,
+    [SalesOrder] NVARCHAR(128) NULL,
+    [PurchaseOrder] NVARCHAR(128) NULL,
+    [Customer] NVARCHAR(128) NULL,
+    [Supplier] NVARCHAR(128) NULL,
+    CONSTRAINT [PK_cus_DocumentItem] PRIMARY KEY (MaterialDocument,MaterialDocumentItem)
+);

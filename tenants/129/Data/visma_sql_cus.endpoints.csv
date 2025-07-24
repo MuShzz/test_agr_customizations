@@ -1,0 +1,13 @@
+id,step_name,endpoint,endpoint_schema,task_type,db_schema,db_table,priority,is_active,pre_sql_exec,pre_sql,select_sql,from_sql,where_sql,post_sql,columns_to_merge
+1,"warehouse","Stc",,0,"visma_sql_cus","Stc",1,True,,,,,,,
+2,"associate","Actor",,0,"visma_sql_cus","Actor",2,True,,,,,,,
+3,"product","Prod",,0,"visma_sql_cus","Prod",3,True,,,,,,,
+4,"text","Txt",,0,"visma_sql_cus","Txt",4,True,,,,,,,
+5,"delivery alternative","DelAlt",,0,"visma_sql_cus","DelAlt",5,True,,,,,,,
+6,"stock balance","StcBal",,0,"visma_sql_cus","StcBal",6,True,,,,,,,
+7,"unit","Unit",,0,"visma_sql_cus","Unit",7,True,,,,,,,
+8,"product transactions","ProdTr",,7,"visma_sql_cus","ProdTr",8,True,,,,,,,
+9,"order","Ord",,0,"visma_sql_cus","Ord",9,True,,,,,,,
+10,"order line","OrdLn",,0,"visma_sql_cus","OrdLn",10,True,,,,,,,
+11,"sale price","PrDcMat",,0,"visma_sql_cus","PrDcMat",11,True,,,,,,,
+12,"currency","Cur",,0,"visma_sql_cus","Cur",12,True,,,,,,,

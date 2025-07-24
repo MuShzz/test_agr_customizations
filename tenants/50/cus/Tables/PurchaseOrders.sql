@@ -1,0 +1,23 @@
+CREATE TABLE [cus].[PurchaseOrders] (
+    [uniquekey] BIGINT NOT NULL,
+    [entity] INT NULL,
+    [duedate] NVARCHAR(100) NULL,
+    [expectedreceiptdate] NVARCHAR(100) NULL,
+    [expectedshipdate] NVARCHAR(100) NULL,
+    [item] INT NULL,
+    [item_code] NVARCHAR(100) NULL,
+    [location] INT NULL,
+    [location_name] NVARCHAR(100) NULL,
+    [quantity] DECIMAL(18,4) NULL,
+    [quantityshiprecv] DECIMAL(18,4) NULL,
+    [shipdate] NVARCHAR(100) NULL,
+    [status] NVARCHAR(100) NULL,
+    [status_description] NVARCHAR(100) NULL,
+    [trandate] NVARCHAR(100) NULL,
+    [tranid] NVARCHAR(100) NULL,
+    [transactionid] INT NULL,
+    [type] NVARCHAR(100) NULL,
+    [voided] NVARCHAR(1) NULL,
+    [dropship] NVARCHAR(10) NULL,
+    CONSTRAINT [PK_PurchaseOrders] PRIMARY KEY (uniquekey)
+);

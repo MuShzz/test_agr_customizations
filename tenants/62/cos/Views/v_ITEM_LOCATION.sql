@@ -1,0 +1,39 @@
+-- ===============================================================================
+-- Author:      Halla Maria Hjartardottir
+-- Description: Customer mapping from COS
+--
+--  12.03.2023.HMH   Created
+-- ===============================================================================
+CREATE VIEW [cos_cus].[v_ITEM_LOCATION]
+AS
+	SELECT 
+        CAST(ITEM_NO AS NVARCHAR(255))                  AS [ITEM_NO],
+        CAST(LOCATION_NO AS NVARCHAR(255))              AS [LOCATION_NO],
+        CAST(MAX_STOCK AS DECIMAL(18,4))                AS [MAX_STOCK],
+        CAST(CLOSED_FOR_ORDERING AS BIT)                AS [CLOSED],
+        CAST(CLOSED_FOR_ORDERING AS BIT)                AS [CLOSED_FOR_ORDERING],
+        CAST(RESPONSIBLE AS NVARCHAR(255))              AS [RESPONSIBLE],
+        CAST(NAME AS NVARCHAR(255))                     AS [NAME],
+        CAST(DESCRIPTION AS NVARCHAR(1000))             AS [DESCRIPTION],
+        CAST(PRIMARY_VENDOR_NO AS NVARCHAR(255))        AS [PRIMARY_VENDOR_NO],
+        CAST(LEAD_TIME_DAYS AS SMALLINT)                AS [PURCHASE_LEAD_TIME_DAYS],
+        CAST(NULL AS SMALLINT)                          AS [TRANSFER_LEAD_TIME_DAYS],
+        CAST(ORDER_FREQUENCY_DAYS AS SMALLINT)          AS [ORDER_FREQUENCY_DAYS],
+        CAST(ORDER_COVERAGE_DAYS AS SMALLINT)           AS [ORDER_COVERAGE_DAYS],
+        CAST(MIN_ORDER_QTY AS DECIMAL(18,4))            AS [MIN_ORDER_QTY],
+        CAST(ORIGINAL_NO AS NVARCHAR(50))               AS [ORIGINAL_NO],
+        CAST(SALE_PRICE AS DECIMAL(18,4))               AS [SALE_PRICE],
+        CAST(COST_PRICE AS DECIMAL(18,4))               AS [COST_PRICE],
+		CAST(MIN_STOCK AS DECIMAL(18,4)) AS [SAFETY_STOCK_UNITS],
+        CAST(NULL AS DECIMAL(18,4)) AS [MIN_DISPLAY_STOCK],
+        CAST(PURCHASE_PRICE AS DECIMAL(18,4))           AS [PURCHASE_PRICE],
+        CAST(ORDER_MULTIPLE AS DECIMAL(18,4))           AS [ORDER_MULTIPLE],
+        CAST(QTY_PALLET AS DECIMAL(18,4))               AS [QTY_PALLET],
+        CAST(VOLUME AS DECIMAL(18,4))                   AS [VOLUME],
+        CAST(WEIGHT AS DECIMAL(18,4))                   AS [WEIGHT],
+        CAST(ISNULL(REORDER_POINT,0) AS DECIMAL(18,4))  AS [REORDER_POINT],
+        CAST(1 AS BIT)                                  AS [INCLUDE_IN_AGR],
+		CAST(NULL AS BIT)								AS [SPECIAL_ORDER]
+    FROM 
+        [cos_cus].[AGR_ITEM_LOCATION]
+    where BIN_NUMBER <> 'Default bin number'

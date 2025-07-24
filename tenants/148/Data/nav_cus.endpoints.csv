@@ -1,0 +1,5 @@
+id,step_name,endpoint,task_type,db_schema,db_table,priority,is_active,pre_sql_exec,pre_sql,select_sql,from_sql,where_sql,post_sql
+1,"Items","Item",0,"nav","Item",1,True,,,,,"[Gen_ Prod_ Posting Group] = 'VARAHLUTIR'",
+50001,"Item_Extra_Info","Item",0,"nav_cus","Item_Extra_Info",50001,True,,,,,,
+50002,"Item_Substitution","Item Substitution",0,"nav_cus","Item_Substitution",50002,True,,,,,,
+50003,"ServiceLine","Service Line",0,"nav_cus","ServiceLine",50003,True,,,,,"[Gen_ Prod_ Posting Group] = 'VARAHLUTIR'",

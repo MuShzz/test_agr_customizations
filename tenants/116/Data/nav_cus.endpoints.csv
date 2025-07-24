@@ -1,0 +1,5 @@
+id,step_name,endpoint,task_type,db_schema,db_table,priority,is_active,pre_sql_exec,pre_sql,select_sql,from_sql,where_sql,post_sql
+1,"Items","Item",0,"nav","Item",1,True,,,"[No_],[Vendor No_],[Vendor Item No_],[Description],[Description 2],[Type],[Product Group Code],[Item Category Code],[Blocked],[Gross Weight (kg)] AS [Gross Weight],[Unit Volume (CBM)] AS [Unit Volume],[Unit Cost],[Order Multiple],[Maximum Inventory],[Unit Price],[Base Unit of Measure],[Minimum Order Quantity],[Price Includes VAT],[Production BOM No_],[Last Direct Cost],[Lead Time Calculation],[Replenishment System],[Purch_ Unit of Measure],[Reordering Policy],[Safety Stock Quantity],[Reorder Point]",,"[Item Status] = 'LIVE'",
+10,"UnitOfMeasure","Unit of Measure",0,"nav","UnitofMeasure",10,True,,,"[Code], [Description], '' AS [International Standard Code]",,,
+11,"ItemUnitOfMeasure","Item Unit of Measure",0,"nav","ItemUnitofMeasure",11,True,,,"[Item No_],[Code],[Qty_ per Unit of Measure],[Length (cm)] as [Length],[Width (cm)] as [Width],[Height (cm)] as [Height],[Cubage (CBM)] as [Cubage],[Net Weight (kg)] as [Weight]",,,
+5000,"Items","Item",0,"nav_cus","ItemExtraInfo",5000,True,,,,,,

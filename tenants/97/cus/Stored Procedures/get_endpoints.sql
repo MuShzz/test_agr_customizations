@@ -1,0 +1,112 @@
+
+
+
+
+
+
+
+
+
+
+
+-- ===============================================================================
+-- Author:      Thordur Oskarsson
+-- Description: Get erp endpoints
+--
+-- 2023.07.04.TO   Created
+-- ===============================================================================
+CREATE PROCEDURE [cus].[get_endpoints] 
+(
+	@CompanyName NVARCHAR(255) = NULL,
+	@TablePrefix NVARCHAR(255) = NULL,
+	@TablePostfix NVARCHAR(255) = NULL
+)
+
+AS
+BEGIN
+	SET NOCOUNT ON
+
+  SELECT * FROM ( 	
+      SELECT 
+            'dbo' AS TableSchema_S
+          ,e.[endpoint] AS TableName_S
+          ,e.[db_schema] AS TableSchema_T
+          ,e.[db_table] AS TableName_T
+          ,'SELECT ' + CASE WHEN e.select_sql IS NULL THEN (SELECT STRING_AGG(QUOTENAME(c.[column_name]),',') 
+                            FROM [dbo].[v_db_object_info] AS c
+                                   WHERE  c.[schema_name] = e.[db_schema]
+                                      AND c.[object_name] = e.[db_table]
+									  AND c.[column_name] <> 'Company')
+							ELSE e.select_sql
+                            END
+	       + ' FROM dbo.'+QUOTENAME(CASE WHEN comp.company_name IS NOT NULL THEN comp.company_name+'$'+e.[endpoint] ELSE e.endpoint END)
+		   + CASE WHEN e.where_sql IS NOT NULL THEN ' WHERE '+e.where_sql ELSE '' END AS query,
+           'TRUNCATE TABLE '+QUOTENAME(e.[db_schema])+'.'+QUOTENAME(e.[db_table]) AS pre_copy_script,
+	       NULL AS endpoint_filter,
+
+	    (SELECT CONCAT(  '{"type": "TabularTranslator", "mappings": ', '[',
+                STRING_AGG(CAST(
+                  CONCAT('{"source":{"name":"' ,c.[column_name], '"},
+                       "sink":{"name":"',  c.[column_name], '"}}') AS NVARCHAR(MAX))
+                ,','),
+                ']',',"collectionReference": "$[', CHAR(39), 'value', CHAR(39),']" }') AS json_output
+           FROM [dbo].[v_db_object_info] AS c
+           WHERE  c.[schema_name] = e.[db_schema]
+              AND c.[object_name] = e.[db_table]
+              ) AS column_map,
+            comp.[company],
+            comp.erp_endpoint,
+            comp.erp_token,
+            comp.erp_user,
+            comp.erp_secret,
+            comp.erp_scope,
+            ROW_NUMBER () OVER (PARTITION BY e.db_schema, e.db_table ORDER BY comp.[company]) AS step_no
+            FROM [cus].[endpoints] e
+      INNER JOIN [cus].companies comp ON 1=1
+      WHERE task_type = 0 AND e.is_active = 1 AND comp.company <> 'BLG'
+
+      UNION ALL
+  
+      -- ItemLedgerEntry
+      SELECT 
+            'dbo' AS TableSchema_S
+          ,e.[endpoint] AS TableName_S
+          ,e.[db_schema] AS TableSchema_T
+          ,e.[db_table] AS TableName_T
+          ,'SELECT ' + CASE WHEN e.select_sql IS NULL THEN (SELECT STRING_AGG(QUOTENAME(c.[column_name]),',') 
+                            FROM [dbo].[v_db_object_info] AS c
+                                   WHERE  c.[schema_name] = e.[db_schema]
+                                      AND c.[object_name] = e.[db_table]
+									  AND c.[column_name] <> 'Company')
+							ELSE e.select_sql
+                            END
+           + ' FROM dbo.'+QUOTENAME(CASE WHEN comp.company_name IS NOT NULL THEN comp.company_name+'$'+e.[endpoint] ELSE e.endpoint END)
+           + ' WHERE [Entry No_] > '+CAST(ISNULL((SELECT MAX([Entry No_]) FROM [cus].[ItemLedgerEntry] WHERE COMPANY = comp.[company]),0) AS NVARCHAR(MAX))
+           AS query,
+           '' AS pre_copy_script,
+	     NULL AS endpoint_filter,
+  
+          (SELECT  CONCAT(  '{"type": "TabularTranslator", "mappings": ', '[',
+                STRING_AGG(CAST(
+                  CONCAT('{"source":{"name":"' ,c.[column_name], '"},
+                       "sink":{"name":"',   c.[column_name], '"}}') AS NVARCHAR(MAX))
+                ,','),
+                ']}') AS json_output
+           FROM [dbo].[v_db_object_info] AS c
+           WHERE  c.[schema_name] = e.[db_schema]
+              AND c.[object_name] = e.[db_table]
+              ) AS column_map,
+            comp.[company],
+            comp.erp_endpoint,
+            comp.erp_token,
+            comp.erp_user,
+            comp.erp_secret,
+            comp.erp_scope,
+            2 AS step_no
+            FROM [cus].[endpoints] e
+      INNER JOIN [cus].companies comp ON 1=1
+      WHERE e.task_type = 7 AND e.is_active = 1 AND e.step_name = 'ItemLedgerEntry'
+) t1 ORDER BY t1.step_no ASC, TableSchema_S ASC, TableName_S ASC
+END
+
+

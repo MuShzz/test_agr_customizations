@@ -1,0 +1,14 @@
+CREATE VIEW cus.v_CC_stockunits
+AS
+SELECT i.ITEMID AS ITEM_NO, 
+	'01-01-2100' AS [DATE], 
+	CAST(ISNULL( SUM(ins.PhysicalInvent/ NULLIF(uc.Factor, 0)), -9999.) AS INT) AS [STOCK_UNITS]
+FROM cus.InventSum ins INNER JOIN cus.InventDim id ON ins.DATAAREAID=id.DATAAREAID AND ins.INVENTDIMID=id.INVENTDIMID
+	INNER JOIN cus.UnitConvert uc ON uc.ITEMID=ins.ITEMID AND uc.DATAAREAID=ins.DATAAREAID
+	INNER JOIN cus.InventTableModule itm ON itm.ITEMID=ins.ITEMID AND uc.FROMUNIT=itm.UNITID AND itm.DATAAREAID=ins.DATAAREAID
+	INNER JOIN cus.inventtable i ON i.ITEMID=ins.ITEMID
+	INNER JOIN cus.DataAreas l ON l.company_id=i.dataareaid
+WHERE itm.MODULETYPE=0
+	AND uc.TOUNIT='ks'
+	AND id.INVENTLOCATIONID IN('AFK-GE','ADF-GE')
+GROUP BY i.ITEMID

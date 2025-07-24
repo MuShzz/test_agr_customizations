@@ -1,0 +1,6 @@
+id,step_name,endpoint,endpoint_schema,task_type,db_schema,db_table,priority,is_active,pre_sql_exec,pre_sql,select_sql,from_sql,where_sql,post_sql,columns_to_merge,dataareaid
+1,"INVENTTABLE","INVENTTABLE","INVENTTABLE",0,"ax_cus","INVENTTABLE",1,True,,,,,,,,
+8,"INVENTTABLEMODULE","INVENTTABLEMODULE","INVENTTABLEMODULE",0,"ax_cus","INVENTTABLEMODULE",8,True,,,,,,,,
+10,"ECoresProduct","ECORESPRODUCT","ECORESPRODUCT",0,"ax_cus","ECORESPRODUCT",10,True,,,,,,,,
+100,"UNITOFMEASURECONVERSION","UNITOFMEASURECONVERSION","UNITOFMEASURECONVERSION",0,"ax_cus","UNITOFMEASURECONVERSION",100,True,,,,,,,,
+101,"UNITOFMEASURE","UNITOFMEASURE","UNITOFMEASURE",0,"ax_cus","UNITOFMEASURE",101,True,,,,,,,,

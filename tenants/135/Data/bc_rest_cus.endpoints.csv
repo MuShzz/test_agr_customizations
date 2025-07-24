@@ -1,0 +1,2 @@
+id,step_name,endpoint,task_type,db_schema,db_table,endpoint_filter,priority,is_active,post_sql
+1,"Items","AGRItem",0,"bc_rest_cus","item","?$select=No,VendorNo,VendorItemNo,ManufacturerCode,Description,Description2,Type,ItemCategoryCode,PurchasingBlocked,SalesBlocked,Blocked,GrossWeight,UnitVolume,UnitCost,UnitPrice,OrderMultiple,MaximumInventory,BaseUnitofMeasure,MinimumOrderQuantity,PriceIncludesVAT,ProductionBOMNo,LastDirectCost,LeadTimeCalculation,ReplenishmentSystem,PurchUnitofMeasure,ReorderingPolicy,SafetyStockQuantity,ReorderPoint",1,True,

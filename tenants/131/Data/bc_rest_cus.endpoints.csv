@@ -1,0 +1,2 @@
+id,step_name,endpoint,task_type,db_schema,db_table,endpoint_filter,priority,is_active,post_sql
+50000,"ItemsExtraInfo","AGRStillingItems",0,"bc_rest_cus","item_extra_info",,0,True,

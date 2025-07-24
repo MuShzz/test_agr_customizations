@@ -1,0 +1,7 @@
+id,step_name,endpoint,task_type,db_schema,db_table,endpoint_filter,priority,is_active,post_sql
+10,"BOMComponent","AGRBOMComponent",0,"bc_rest","bom_component",,10,False,
+26,"AGRApiOrderHeader","AGRApiOrderHeader",0,"bc_rest","agr_api_order_header",,26,False,
+50001,"AGR_Item","AGR_Item",0,"bc_rest_cus","AGR_Item","?$select=No_,Manufacturer_Code,SKU_Item_Type_Code,Min_Del_DutyPaid_LCY,SKU_Location_Code,SKU_Variant_Code,SKU_Reordering_Policy",50001,True,
+50002,"AGR_Purchase_Header","AGR_Purchase_Header",0,"bc_rest_cus","AGR_Purchase_Header","?$select=No_,Document_Type,Call_Off_Order",50002,True,
+50003,"AssemblyHeader","AGR_Assembly_Header",0,"bc_rest_cus","assembly_header","?$select=AH_Document_Type,AH_No,AH_Status,AH_Location_Code",50003,True,
+50004,"AssemblyLine","AGR_Assembly_Line",0,"bc_rest_cus","assembly_line","?$select=AL_Document_No,AL_Line_No,AL_Remaining_Quantity_Base,AL_Due_Date,AL_Item_No,AL_Variant_Code,",50003,True,

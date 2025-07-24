@@ -1,0 +1,4 @@
+id,step_name,endpoint,task_type,db_schema,db_table,endpoint_filter,priority,is_active,post_sql
+5000,"ItemsExtraInfo","Items",0,"bc_rest_cus","item_extra_info","?$Select=No,bc1_ItemHeaderID,Description,bc1_ItemVariant1Name,bc1_ItemVariant1ID,bc1_ItemVariant2ID,bc1_ItemVariant2Name,bc1_calcItemStatGroupDesc,bc1_calcItemStatGroup2Desc,bc1_calcItemStatGroup3Desc,bc1_calcItemStatGroup4desc,bc1_calcItemStatGroup5Desc,trm_Item_Type,Gen_Prod_Posting_Group,Replenishment_System,bc1_ItemVariant1DimName,bc1_ItemVariant2DimName,Inventory_Posting_Group",5000,True,
+5001,"CustomerExtraInfo","Customers",0,"bc_rest_cus","customer_extra_info","?$Select=No,Name,Search_Name,Blocked,trm_Company_Group,trm_Chain,trm_Customer_Commission_Group,Country_Region_Code,City,County,Bill_to_Customer_No,Customer_Posting_Group",5001,True,
+5002,"CustomerDefaultDimensions","DefaultDimensions",0,"bc_rest_cus","customer_default_dimensions","?$Select=No,Dimension_Code,Dimension_Value_Code",5002,True,

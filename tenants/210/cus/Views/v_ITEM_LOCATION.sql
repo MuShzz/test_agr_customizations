@@ -1,0 +1,31 @@
+CREATE VIEW [cus].v_ITEM_LOCATION
+             AS
+            SELECT
+               CAST(NULL AS nvarchar(255)) AS [ITEM_NO],
+               CAST(NULL AS nvarchar(255)) AS [LOCATION_NO],
+               CAST(NULL AS decimal(18,4)) AS [SAFETY_STOCK_UNITS],
+               CAST(NULL AS decimal(18,4)) AS [MIN_DISPLAY_STOCK],
+               CAST(NULL AS decimal(18,4)) AS [MAX_STOCK],
+               CAST(NULL AS bit) AS [CLOSED],
+               CAST(NULL AS bit) AS [CLOSED_FOR_ORDERING],
+               CAST(NULL AS nvarchar(255)) AS [RESPONSIBLE],
+               CAST(NULL AS nvarchar(255)) AS [NAME],
+               CAST(NULL AS nvarchar(1000)) AS [DESCRIPTION],
+               CAST(NULL AS nvarchar(255)) AS [PRIMARY_VENDOR_NO],
+               CAST(NULL AS smallint) AS [PURCHASE_LEAD_TIME_DAYS],
+               CAST(NULL AS smallint) AS [TRANSFER_LEAD_TIME_DAYS],
+               CAST(NULL AS smallint) AS [ORDER_FREQUENCY_DAYS],
+               CAST(NULL AS smallint) AS [ORDER_COVERAGE_DAYS],
+               CAST(NULL AS decimal(18,4)) AS [MIN_ORDER_QTY],
+               CAST(NULL AS nvarchar(50)) AS [ORIGINAL_NO],
+               CAST(NULL AS decimal(18,4)) AS [SALE_PRICE],
+               CAST(NULL AS decimal(18,4)) AS [COST_PRICE],
+               CAST(NULL AS decimal(18,4)) AS [PURCHASE_PRICE],
+               CAST(NULL AS decimal(18,4)) AS [ORDER_MULTIPLE],
+               CAST(NULL AS decimal(18,4)) AS [QTY_PALLET],
+               CAST(NULL AS decimal(18,4)) AS [VOLUME],
+               CAST(NULL AS decimal(18,4)) AS [WEIGHT],
+               CAST(NULL AS decimal(18,4)) AS [REORDER_POINT],
+               CAST(NULL AS bit) AS [INCLUDE_IN_AGR],
+               CAST(NULL AS bit) AS [SPECIAL_ORDER]
+                WHERE 1 = 0;

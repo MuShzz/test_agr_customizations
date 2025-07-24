@@ -1,0 +1,4 @@
+id,step_name,endpoint,task_type,db_schema,db_table,priority,is_active,pre_sql_exec,pre_sql,select_sql,from_sql,where_sql,post_sql
+6,"PurchaseLine","Purchase Line",0,"nav2017","PurchaseLine",6,True,,,,,"[Description] NOT LIKE '%~~%'",
+11,"ItemUnitofMeasure","Item Unit of Measure",0,"nav2017","ItemUnitofMeasure",11,True,,,"[Item No_],[Code],CAST([Qty_ per Unit of Measure] AS DECIMAL(18,4)) AS [Qty_ per Unit of Measure],CAST([Length] AS DECIMAL(18,4)) AS [Length],CAST([Width] AS DECIMAL(18,4)) AS [Width],CAST([Height] AS DECIMAL(18,4)) AS [Height],CAST([Cubage] AS DECIMAL(18,4)) AS [Cubage],CAST([Weight] AS DECIMAL(18,4)) AS [Weight]",,,
+1000,"ItemExtraInfo","Item",0,"nav2017_cus","ItemExtraInfo",1000,True,,,,,,

@@ -1,0 +1,3 @@
+id,step_name,endpoint,task_type,db_schema,db_table,endpoint_filter,priority,is_active,post_sql
+50001,"ItemsCustom","RPBIItem",0,"bc_rest_cus","CustomColumns_RPBIItem","?$select=No_,Point_of_Departure,Omit_in_allocation",50001,True,
+50002,"RPBISalesHeader","RPBISalesHeader",0,"bc_rest_cus","RPBISalesHeader","?$select=No_,Document_Type,RITShipping_Code,RITOrder_Type",50002,True,

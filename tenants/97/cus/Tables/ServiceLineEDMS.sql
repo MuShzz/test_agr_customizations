@@ -1,0 +1,22 @@
+CREATE TABLE [cus].[ServiceLineEDMS] (
+    [Document No_] NVARCHAR(50) NOT NULL,
+    [Line No_] NVARCHAR(50) NOT NULL,
+    [Sell-to Customer No_] NVARCHAR(20) NOT NULL,
+    [No_] NVARCHAR(20) NOT NULL,
+    [Type] NVARCHAR(10) NULL,
+    [Quantity] DECIMAL(38,20) NULL,
+    [Company] NVARCHAR(3) NOT NULL,
+    [Location Code] NVARCHAR(20) NULL,
+    [Unit of Measure] NVARCHAR(20) NULL,
+    [Appl_-to Item Entry] INT NULL,
+    [Shortcut Dimension 1 Code] NVARCHAR(20) NULL,
+    [Shortcut Dimension 2 Code] NVARCHAR(20) NULL,
+    [Shipment Date] DATE NOT NULL,
+    [Gen_ Prod_ Posting Group] NVARCHAR(50) NULL,
+    [Unit of Measure Code] NVARCHAR(50) NULL,
+    [Requested Delivery Date] DATE NOT NULL,
+    [Promised Delivery Date] DATE NOT NULL,
+    [Planned Delivery Date] DATE NOT NULL,
+    [Planned Shipment Date] DATE NOT NULL,
+    CONSTRAINT [PK_cus_ServiceLineEDMS] PRIMARY KEY (Company,Document No_,Line No_,No_)
+);

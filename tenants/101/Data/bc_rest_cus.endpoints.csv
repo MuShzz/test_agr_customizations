@@ -1,0 +1,10 @@
+id,step_name,endpoint,task_type,db_schema,db_table,endpoint_filter,priority,is_active,post_sql
+7,"SKU","AGRStockKeepingUnit",0,"bc_rest","stock_keeping_unit","?$select=ItemNo,LocationCode,UnitCost,ReplenishmentSystem,TransferfromCode,VariantCode,LeadTimeCalculation,MinimumOrderQuantity,OrderMultiple,ReorderPoint,MaximumInventory,VendorNo,SafetyStockQuantity",7,False,
+10,"BOMComponent","AGRBOMComponent",0,"bc_rest","bom_component",,10,False,
+14,"PurchaseHeader","AGRPurchaseHeader",0,"bc_rest","purchase_header","?$select=DocumentType,No,BuyfromVendorNo,OrderDate,PostingDate",14,False,
+21,"ProductionBOMHeader","AGRProdBOMHeader",0,"bc_rest","production_bom_header",,21,False,
+22,"ProductionBOMLine","AGRProdBOMLine",0,"bc_rest","production_bom_line","?$select=ProductionBOMNo,VersionCode,LineNo,Type,No,Description,UnitofMeasureCode,Quantity,Quantityper",22,False,
+25,"AssemblyHeader","MonteringsHode",0,"bc_rest_cus","assembly_header","?$select=DocumentType,No,Status,LocationCode",25,True,
+26,"AssemblyLine","MonteringsLine",0,"bc_rest_cus","assembly_line","?$select=DocumentNo,No,RemainingQuantityBase,DueDate,AUZItemNo2,AuxiliaryIndex1,AuxiliaryIndex2",26,True,
+5001,"Varestatus","AGRItem",0,"bc_rest_cus","CustomColumns_No2","?$select=No,No2",5001,True,
+5002,"Varestatus","AGRStatus",0,"bc_rest_cus","CustomColumns_Item","?$select=No,Status,ForecastItem,DiscountGroup",5002,True,

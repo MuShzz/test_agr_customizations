@@ -1,0 +1,3 @@
+id,step_name,endpoint,task_type,db_schema,db_table,endpoint_filter,priority,is_active,post_sql
+24,"SalesShipmentHeader","AGRSalesShipmentHeader",0,"bc_rest","sales_shipment_header","?$select=No,OrderNo",24,False,
+25,"AGRApiOrderLines","AGRApiOrderLines",0,"bc_rest","agr_api_order_lines",,25,False,

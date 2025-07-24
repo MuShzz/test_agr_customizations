@@ -1,0 +1,17 @@
+CREATE TABLE [cus].[DelAlt] (
+    [ProdNo] NVARCHAR(250) NOT NULL,
+    [LnNo] NVARCHAR(250) NOT NULL,
+    [SupNo] NVARCHAR(250) NOT NULL,
+    [SupProd] NVARCHAR(250) NOT NULL,
+    [StPurcUn] NVARCHAR(250) NOT NULL,
+    [EcPurcQt] DECIMAL(28,6) NOT NULL,
+    [Srt] NVARCHAR(250) NULL,
+    [TanspTm] DECIMAL(18,4) NULL,
+    [AdmTm] DECIMAL(18,4) NULL,
+    [ProdTm] DECIMAL(18,4) NULL,
+    [DelTm] DECIMAL(18,4) NULL,
+    [Free1] NVARCHAR(250) NULL,
+    [Free2] NVARCHAR(250) NULL,
+    [SupPrice] DECIMAL(18,4) NULL,
+    CONSTRAINT [PK_cus_DelAlt] PRIMARY KEY (LnNo,ProdNo,SupNo)
+);

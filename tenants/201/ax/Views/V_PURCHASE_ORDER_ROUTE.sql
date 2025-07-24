@@ -1,0 +1,139 @@
+
+CREATE VIEW [ax_cus].[V_PURCHASE_ORDER_ROUTE]
+AS
+
+SELECT DISTINCT
+        CAST(pinf.[NO] AS NVARCHAR(255))					AS [PRODUCT_ITEM_NO],
+		CAST('Garri' AS NVARCHAR(255))						AS [LOCATION_NO], -- Temporary fix since I know the only location that orders from vendors is the sum location 'Garri'
+        CAST(pinf.PRIMARY_VENDOR_NO AS NVARCHAR(255))		AS [VENDOR_NO],
+        CAST(1 AS BIT)										AS [PRIMARY], -- Hardcoded in the old setup
+		CAST(CASE WHEN iips.LEADTIME > 0 THEN iips.LEADTIME ELSE NULL END AS SMALLINT) AS LEAD_TIME_DAYS,
+		CAST(
+			CASE
+				WHEN v.AGRORDERFREQUENCY IS NOT NULL AND v.AGRORDERFREQUENCY <> 0 THEN v.AGRORDERFREQUENCY
+				WHEN it.AGRORDERFREQUENCY <> 0 AND it.AGRORDERFREQUENCY IS NOT NULL THEN it.AGRORDERFREQUENCY
+			ELSE NULL 
+		END AS SMALLINT)									AS [ORDER_FREQUENCY_DAYS],
+        CAST(iips.LOWESTQTY AS DECIMAL(18,4))				AS [MIN_ORDER_QTY],
+        CAST(itm.PRICE AS DECIMAL(18,4))					AS [COST_PRICE],
+		CAST(
+			CASE 
+				WHEN iips.MULTIPLEQTY < 1 OR iips.MULTIPLEQTY IS NULL THEN 1
+				ELSE iips.MULTIPLEQTY END * CAST(ISNULL(stk.FACTOR,1) AS DECIMAL(18,4)) 
+			AS DECIMAL(18,4))								AS ORDER_MULTIPLE,
+		CAST(ISNULL(stk.FACTOR,1) AS DECIMAL(18,4))			AS QtyInPurchaseUnit,  --custom column used in undelivered  RG 22.11.2022
+		CAST(
+		--	CASE 
+		--		WHEN it.CEPALLETQUANTITY < 1 THEN 1       -Ef magn á bretti er óútfyllt þá á ekki að koma 1. ESI 26.01.2023 
+				--ELSE 
+				it.CEPALLETQUANTITY  * CAST(ISNULL(stk.factor,1) AS DECIMAL(18,4)) 
+			AS INT)											AS QTY_PALLET,
+		CAST(it.QTYPERLAYER AS INT)							AS [QTY_PALLET_LAYER] 
+	FROM 
+		ax_cus.v_ITEM pinf
+		INNER JOIN ax_cus.INVENTTABLE it					ON it.ITEMID = pinf.NO
+		INNER JOIN ax.INVENTITEMPURCHSETUP iips		ON iips.ITEMID = pinf.NO
+		INNER JOIN ax_cus.INVENTTABLEMODULE itm			ON itm.ItemId = pinf.NO--, pinf.ARTICLE_NO
+		INNER JOIN ax.[INVENTDIM] id					ON id.INVENTDIMID = iips.INVENTDIMID AND iips.DATAAREAID = id.DATAAREAID AND iips.[PARTITION] = id.[PARTITION]
+		LEFT JOIN ax.VENDTABLE v						ON it.PRIMARYVENDORID = v.ACCOUNTNUM AND v.DATAAREAID = it.DATAAREAID
+		--LEFT JOIN erp_cus.INVENTLOCATION il ON il.INVENTLOCATIONID = id.INVENTLOCATIONID
+	    LEFT JOIN adi.LOCATION l							ON l.NO = id.INVENTLOCATIONID
+		LEFT JOIN(
+			SELECT 
+				itm.ITEMID, 
+				CASE WHEN 
+					MIN(SYMBOL_TO.SYMBOL) = 'STK' AND MIN(SYMBOL_FROM.SYMBOL) = 'STK' THEN 1 ELSE MIN(UOMC.FACTOR) END AS FACTOR
+				FROM ax.v_ITEM pinf
+				LEFT JOIN ax_cus.INVENTTABLE it				ON it.ITEMID = pinf.NO
+				INNER JOIN ax.INVENTITEMPURCHSETUP iips	ON iips.ITEMID = pinf.NO
+				INNER JOIN ax_cus.INVENTTABLEMODULE itm		ON itm.ITEMID = PINF.NO--pinf.ARTICLE_NO
+				INNER JOIN (
+					--symbol from
+					SELECT 
+						itm.ITEMID, 
+						uom_from.SYMBOL, 
+						uom_from.RECID 
+					FROM ax_cus.v_ITEM pinf
+						INNER JOIN ax_cus.INVENTTABLE it				ON it.ITEMID = pinf.NO
+						INNER JOIN ax.INVENTITEMPURCHSETUP iips	ON iips.ITEMID = pinf.NO
+						INNER JOIN ax_cus.INVENTTABLEMODULE itm		ON itm.ITEMID = PINF.NO --pinf.ARTICLE_NO
+						INNER JOIN ax_cus.[UNITOFMEASURE] uom_from		ON itm.UNITID = uom_from.symbol AND itm.MODULETYPE = 1 --and uomc.PRODUCT = it.PRODUCT --and uom_from.RECID = uomc.TOUNITOFMEASURE
+					WHERE inventdimid = 'Ax1'-- and MODULETYPE <> 0
+				) symbol_from ON symbol_from.ITEMID = itm.ITEMID
+				INNER JOIN (
+					SELECT 
+						itm.ITEMID, 
+						uom_to.SYMBOL, 
+						uom_to.RECID 
+					FROM ax_cus.v_ITEM pinf
+						INNER JOIN ax_cus.INVENTTABLE it				ON it.ITEMID = pinf.NO
+						INNER JOIN ax.INVENTITEMPURCHSETUP iips	ON iips.ITEMID = pinf.NO
+						INNER JOIN ax_cus.INVENTTABLEMODULE itm		ON itm.ITEMID = PINF.NO--pinf.ARTICLE_NO
+						INNER JOIN ax_cus.[UNITOFMEASURE] uom_to		ON itm.UNITID = uom_to.SYMBOL AND itm.MODULETYPE = 2--and uomc.PRODUCT = it.PRODUCT --and uom_from.RECID = uomc.TOUNITOFMEASURE
+					WHERE inventdimid = 'Ax1'-- and MODULETYPE <> 0
+				) symbol_to ON symbol_to.ITEMID = itm.ITEMID
+			INNER JOIN ax_cus.UNITOFMEASURECONVERSION uomc				ON symbol_from.RECID = uomc.FROMUNITOFMEASURE AND symbol_to.RECID = uomc.TOUNITOFMEASURE --AND UOMC.PRODUCT = it.PRODUCT
+			WHERE inventdimid = 'Ax1'-- and MODULETYPE <> 0
+			GROUP BY ITM.ITEMID
+		) stk ON itm.ITEMID = stk.ITEMID 
+		WHERE (id.INVENTSITEID = '' OR  id.INVENTSITEID = 'Ax1') AND itm.MODULETYPE=0 AND itm.ITEMID NOT LIKE '%öö%'
+		--AND CAST(pinf.[NO] AS NVARCHAR(255)) = '1208774'
+
+		--UNION ALL
+
+		----B1 order from vendor missing - we do not order into B1
+		--SELECT
+		--	CAST(NO AS NVARCHAR(255))								AS [PRODUCT_ITEM_NO],
+		--	CAST('B1' AS NVARCHAR(255))								AS [LOCATION_NO],
+		--	CAST('vendor_missing' AS NVARCHAR(255))					AS [VENDOR_NO],
+		--	CAST(1 AS BIT)											AS [PRIMARY],
+		--	CAST(1 AS SMALLINT)										AS [LEAD_TIME_DAYS],
+		--	CAST(NULL AS SMALLINT)									AS [ORDER_FREQUENCY_DAYS],
+		--	CAST(NULL AS DECIMAL(18,4))								AS [MIN_ORDER_QTY],
+		--	CAST(NULL AS DECIMAL(18,4))								AS [COST_PRICE],
+		--	--CAST(1 AS DECIMAL(18,4))								AS [ORDER_MULTIPLE],
+		--	CAST(
+		--		CASE 
+		--			WHEN ORDER_MULTIPLE < 1 OR ORDER_MULTIPLE IS NULL THEN 1
+		--			ELSE ORDER_MULTIPLE END 
+		--		AS DECIMAL(18,4))									AS [ORDER_MULTIPLE],
+		--	CAST(NULL AS DECIMAL(18,4))								AS QtyInPurchaseUnit,
+		--	CAST(1 AS INT)											AS [QTY_PALLET],
+		--	CAST(1 AS INT)											AS [QTY_PALLET_LAYER]
+		--FROM 
+		--	--raw.PRODUCT_ASSORTMENT pa
+		--	raw.PRODUCT_INFO
+		--	--WHERE 			NO = '24551794'
+
+
+
+
+--SELECT
+--    CAST(iips.ITEMID AS NVARCHAR(255))                  AS [ITEM_NO],
+--    CAST(dim.INVENTLOCATIONID AS NVARCHAR(255))         AS [LOCATION_NO],
+--    CAST('' AS NVARCHAR(255))							AS [VENDOR_NO],
+--    CAST(CASE WHEN 1 = 0 THEN 1 ELSE 0 END AS BIT)      AS [PRIMARY],
+--    CAST(iips.LEADTIME AS SMALLINT)                     AS [LEAD_TIME_DAYS],
+--    CAST(NULL AS SMALLINT)                              AS [ORDER_FREQUENCY_DAYS],
+--    CAST(iips.LOWESTQTY AS DECIMAL(18, 4))              AS [MIN_ORDER_QTY],
+--    CAST(inv.PRICE AS DECIMAL(18, 4))                   AS [COST_PRICE],
+--    CAST(pur.PRICE AS DECIMAL(18, 4))                   AS [PURCHASE_PRICE],
+--    CAST(iips.MULTIPLEQTY AS DECIMAL(18, 4))            AS [ORDER_MULTIPLE],
+--    CAST(NULL AS DECIMAL(18, 4))                        AS [QTY_PALLET],
+--    CAST(iips.DATAAREAID AS NVARCHAR(4))                AS [COMPANY]
+--FROM ax.INVENTITEMPURCHSETUP AS iips
+--INNER JOIN ax.INVENTDIM AS dim
+--    ON dim.INVENTDIMID = iips.INVENTDIMID
+--    AND dim.DATAAREAID = iips.DATAAREAID
+--    AND dim.PARTITION = iips.PARTITION
+--LEFT JOIN ax.INVENTTABLEMODULE AS inv
+--    ON inv.ITEMID = iips.ITEMID
+--    AND inv.MODULETYPE = 0 /* INVENTORY */
+--    AND inv.DATAAREAID = iips.DATAAREAID
+--    AND inv.PARTITION = iips.PARTITION
+--LEFT JOIN ax.INVENTTABLEMODULE AS pur
+--    ON pur.ITEMID = iips.ITEMID
+--    AND pur.MODULETYPE = 1 /* PURCHASE */
+--    AND pur.DATAAREAID = iips.DATAAREAID
+--    AND pur.PARTITION = iips.PARTITION
+

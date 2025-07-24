@@ -1,0 +1,7 @@
+id,step_name,endpoint,TablePostfix,task_type,db_schema,db_table,priority,is_active,pre_sql_exec,pre_sql,select_sql,from_sql,where_sql,post_sql
+5000,"ItemExt","Item","437dbf0e-84ff-417a-965d-ed2bb9650972$ext",0,"bc_sql_cus","ItemExt",5000,True,,,,,,
+5001,"VendorExt","Vendor","437dbf0e-84ff-417a-965d-ed2bb9650972$ext",0,"bc_sql_cus","VendorExt",5001,True,,,,,,
+5002,"LSCProductGroup","LSC Retail Product Group","5ecfc871-5d82-43f1-9c54-59685e82318d",0,"bc_sql_cus","LSCProductGroup",5002,True,,,,,,
+5003,"StockkeepingUnitExt","Stockkeeping Unit","437dbf0e-84ff-417a-965d-ed2bb9650972$ext",0,"bc_sql_cus","StockkeepingUnitExt",5003,True,,,,,,
+5004,"ICEAGRSalesHistory","ICE AGR Sales History","63a5512e-ef5c-4cc4-ac67-fc1739ce27d8",0,"bc_sql_cus","ICEAGRSalesHistory",5004,True,,,,,,
+5005,"ICEWishlist","ICE Wishlist","63a5512e-ef5c-4cc4-ac67-fc1739ce27d8",0,"bc_sql_cus","ICEWishlist",5005,True,,,,,,

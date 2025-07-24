@@ -1,0 +1,20 @@
+CREATE TABLE [cus].[ITM1] (
+    [ItemCode] NVARCHAR(50) NOT NULL,
+    [PriceList] SMALLINT NOT NULL,
+    [Price] NUMERIC(19,6) NULL,
+    [Currency] NVARCHAR(3) NULL,
+    [Ovrwritten] CHAR(1) NULL,
+    [Factor] NUMERIC(19,6) NULL,
+    [LogInstanc] INT NULL,
+    [ObjType] NVARCHAR(20) NULL,
+    [AddPrice1] NUMERIC(19,6) NULL,
+    [Currency1] NVARCHAR(3) NULL,
+    [AddPrice2] NUMERIC(19,6) NULL,
+    [Currency2] NVARCHAR(3) NULL,
+    [Ovrwrite1] CHAR(1) NULL,
+    [Ovrwrite2] CHAR(1) NULL,
+    [BasePLNum] SMALLINT NULL,
+    [UomEntry] INT NULL,
+    [PriceType] CHAR(1) NULL,
+    CONSTRAINT [PK_erp_cus_ITM1] PRIMARY KEY (ItemCode,PriceList)
+);

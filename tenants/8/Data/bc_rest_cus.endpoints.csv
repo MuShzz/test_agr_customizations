@@ -1,0 +1,2 @@
+id,step_name,endpoint,task_type,db_schema,db_table,endpoint_filter,priority,is_active,post_sql
+50001,"inventoryPostingGroup","Items",0,"bc_rest_cus","CustomColumns_Item","?$select=No,Inventory_Posting_Group",50001,True,

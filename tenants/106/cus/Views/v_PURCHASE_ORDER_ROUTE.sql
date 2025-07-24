@@ -1,0 +1,19 @@
+
+
+
+    CREATE VIEW [cus].[v_PURCHASE_ORDER_ROUTE] AS
+       SELECT
+            CAST('' AS NVARCHAR(255)) AS [ITEM_NO],
+            CAST('' AS NVARCHAR(255)) AS [LOCATION_NO],
+            CAST('' AS NVARCHAR(255)) AS [VENDOR_NO],
+            CAST(0 AS BIT) AS [PRIMARY],
+            CAST(0 AS SMALLINT) AS [LEAD_TIME_DAYS],
+            CAST(0 AS SMALLINT) AS [ORDER_FREQUENCY_DAYS],
+            CAST(0 AS DECIMAL(18, 4)) AS [MIN_ORDER_QTY],
+            CAST(0 AS DECIMAL(18, 4)) AS [COST_PRICE],
+            CAST(0 AS DECIMAL(18, 4)) AS [PURCHASE_PRICE],
+            CAST(0 AS DECIMAL(18, 4)) AS [ORDER_MULTIPLE],
+            CAST(0 AS DECIMAL(18, 4)) AS [QTY_PALLET]
+       WHERE 1 = 0;
+
+

@@ -1,0 +1,38 @@
+CREATE VIEW [ax_cus].[v_bom_component] AS
+	
+	WITH bom_parent_version AS (
+	 SELECT
+		bv.ITEMID,
+		bv.BOMID,
+		bv.DATAAREAID,
+		ROW_NUMBER() OVER (
+            PARTITION BY bv.ITEMID
+            ORDER BY bv.MODIFIEDDATETIME DESC
+        ) AS rn
+
+	 FROM ax.BOMVERSION  bv
+	 WHERE ACTIVE=1 AND APPROVED=1
+	 --AND bv.ITEMID='D405.99.1201.1'
+	),
+	
+	cte AS
+(
+    SELECT
+        CAST(bp.ITEMID AS NVARCHAR(255))    AS [ITEM_NO],
+        CAST(b.ITEMID AS NVARCHAR(255))     AS [COMPONENT_ITEM_NO],
+        CAST(SUM(b.BOMQTY) AS DECIMAL(18,4))     AS [QUANTITY],
+        CAST(b.DATAAREAID AS NVARCHAR(4))   AS [COMPANY]
+    FROM ax.BOM b
+	INNER JOIN bom_parent_version bp ON bp.BOMID=b.BOMID AND rn=1
+    WHERE 
+        bp.ITEMID <> b.ITEMID
+	GROUP BY bp.ITEMID,b.ITEMID,b.DATAAREAID
+)
+SELECT
+    ITEM_NO,
+    COMPONENT_ITEM_NO,
+    QUANTITY,
+    COMPANY
+FROM cte
+
+

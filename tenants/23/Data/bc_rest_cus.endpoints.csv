@@ -1,0 +1,3 @@
+id,step_name,endpoint,task_type,db_schema,db_table,endpoint_filter,priority,is_active,post_sql
+50001,"ItemsCustom","AGRItem",0,"bc_rest_cus","CustomColumns_Item","?$select=No,PurchasingCode",50001,True,
+50002,"ItemsCustomNote","AGRItemNote",0,"bc_rest_cus","CustomColumns_ItemNote","?$select=No,Note",50002,True,

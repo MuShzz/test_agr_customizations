@@ -1,0 +1,8 @@
+id,step_name,endpoint,TablePostfix,task_type,db_schema,db_table,priority,is_active,pre_sql_exec,pre_sql,select_sql,from_sql,where_sql,post_sql
+50001,"CustomColumns_AttributeValue","LSC Attribute Value","5ecfc871-5d82-43f1-9c54-59685e82318d",0,"bc_sql_cus","CustomColumns_AttributeValue",50001,True,,,,,"upper([Attribute Code]) in ('ORDER','OWNBRAND') and [Link Type] = '0'",
+50002,"CustomColumns_ThresholdRule","LSC Threshold Rule","5ecfc871-5d82-43f1-9c54-59685e82318d",0,"bc_sql_cus","CustomColumns_ThresholdRule",50002,True,,,,,,
+50003,"CustomColumns_ItemExt","Item","437dbf0e-84ff-417a-965d-ed2bb9650972$ext",0,"bc_sql_cus","CustomColumns_ItemExt",50003,True,,,,,,
+50004,"CustomColumns_ItemUoM","Item Unit of Measure","437dbf0e-84ff-417a-965d-ed2bb9650972",0,"bc_sql_cus","CustomColumns_ItemUoM",50004,True,,,,,,
+50005,"CustomColumns_Status","LSC Item Status Link","5ecfc871-5d82-43f1-9c54-59685e82318d",0,"bc_sql_cus","CustomColumns_Status",50005,True,,,,,,
+50006,"SalesLine_WePet","Sales Line",,0,"bc_sql_cus","SalesLine_WePet",50006,True,,,,"dbo.[WE_PET LIMITED$Sales Line$437dbf0e-84ff-417a-965d-ed2bb9650972]",,
+50007,"SalesHeader_WePet","Sales Header",,0,"bc_sql_cus","SalesHeader_WePet",50007,True,,,,"dbo.[WE_PET LIMITED$Sales Header$437dbf0e-84ff-417a-965d-ed2bb9650972]",,

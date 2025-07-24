@@ -1,0 +1,8 @@
+id,step_name,endpoint,endpoint_schema,task_type,db_schema,db_table,priority,is_active,pre_sql_exec,pre_sql,select_sql,from_sql,where_sql,post_sql,columns_to_merge
+10,"SalesOrderHeaders","SOOrderHeaders",,0,"ogl_cus","SOOrderHeaders",10,True,,,,,,,
+50001,"PLDeliveryDetails","PLDeliveryDetails",,0,"ogl_cus","PLDeliveryDetails",50001,True,,,,,,,
+50002,"ItemsCustom","STStockDetails",,0,"ogl_cus","STStockDetailsCC",50002,True,,,,,,,
+50003,"SuppliersCustom","PLSuppliers",,0,"ogl_cus","PLSuppliersCC",50003,True,,,,,,,
+50004,"STDepotTransfers","STDepotTransfers",,0,"ogl_cus","STDepotTransfers",50004,True,,,,,,,
+50005,"STDepotStockLevelsCC_inprod","STDepotStockLevels",,0,"ogl_cus","STDepotStockLevelsCC_inprod",50005,True,,,,,,,
+50006,"WOOrders","WOOrders",,0,"ogl_cus","WOOrders",50006,True,,,,,,,

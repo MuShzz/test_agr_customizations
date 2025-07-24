@@ -1,0 +1,33 @@
+CREATE VIEW [ax_cus].[v_TRANSFER_HISTORY] 
+AS
+       
+	SELECT
+        
+        CAST(t.ITEM_NO AS NVARCHAR(255))																													AS [ITEM_NO],
+        CAST(t.FROM_LOCATION_NO AS NVARCHAR(255)) 																											AS [FROM_LOCATION_NO],
+        CAST('' AS NVARCHAR(255)) 																															AS [TO_LOCATION_NO],
+        CAST(t.DATE AS DATE) 																																AS [DATE],
+        CAST(t.TRANSFER AS DECIMAL(18, 4)) 																													AS [TRANSFER],
+		CAST(NULL AS BIGINT)																																AS [TRANSACTION_ID]
+	FROM (
+			SELECT CAST(iv.NO AS NVARCHAR(255))				AS [ITEM_NO],
+					loc.INVENTLOCATIONID 					AS [FROM_LOCATION_NO],
+					it.DATEPHYSICAL 						AS [DATE],
+					SUM(-CAST(it.QTY AS DECIMAL(18,4)))		AS [TRANSFER]
+			FROM 
+				[ax].INVENTTRANS it 
+				INNER JOIN [ax].INVENTTRANSORIGIN ito ON it.INVENTTRANSORIGIN = ito.RECID AND  it.PARTITION = ito.PARTITION AND it.DATAAREAID = ito.DATAAREAID
+				INNER JOIN [ax].INVENTDIM id ON id.INVENTDIMID = it.INVENTDIMID AND id.DATAAREAID = it.DATAAREAID AND id.PARTITION = ito.PARTITION
+				INNER JOIN ax.INVENTLOCATION loc ON loc.INVENTLOCATIONID = id.INVENTLOCATIONID AND loc.DATAAREAID = id.DATAAREAID AND loc.PARTITION = id.PARTITION
+				INNER JOIN ax_cus.Item_v iv ON iv.No_TO_JOIN_IL = it.ITEMID
+			WHERE 
+				it.DATEPHYSICAL > '1/1/1900'
+				AND ito.REFERENCECATEGORY = 6
+				AND CAST(it.QTY AS DECIMAL(18,4)) < 0
+				AND it.STATUSISSUE IN (0,1)
+			GROUP BY 
+				iv.NO,
+				loc.INVENTLOCATIONID,
+				it.DATEPHYSICAL
+		) t
+

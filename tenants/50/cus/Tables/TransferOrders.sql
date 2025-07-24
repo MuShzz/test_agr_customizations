@@ -1,0 +1,22 @@
+CREATE TABLE [cus].[TransferOrders] (
+    [uniquekey] BIGINT NOT NULL,
+    [expectedreceiptdate] NVARCHAR(100) NULL,
+    [expectedshipdate] NVARCHAR(100) NULL,
+    [item] INT NULL,
+    [item_code] NVARCHAR(100) NULL,
+    [location] INT NULL,
+    [location_name] NVARCHAR(100) NULL,
+    [quantity] DECIMAL(18,4) NULL,
+    [quantityshiprecv] DECIMAL(18,4) NULL,
+    [shipdate] NVARCHAR(100) NULL,
+    [status] NVARCHAR(100) NULL,
+    [status_description] NVARCHAR(100) NULL,
+    [trandate] NVARCHAR(100) NULL,
+    [tranid] NVARCHAR(100) NULL,
+    [transactionid] INT NULL,
+    [transferlocation] INT NULL,
+    [transferlocation_name] NVARCHAR(100) NULL,
+    [type] NVARCHAR(100) NULL,
+    [voided] NVARCHAR(1) NULL,
+    CONSTRAINT [PK_TransferOrders] PRIMARY KEY (uniquekey)
+);

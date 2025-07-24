@@ -1,0 +1,2 @@
+tenant_id,tenant_name,erp_setup,erp_system,schema_selection,sql_framework,version
+45,"HIT Trading","BC and NAV (ADI)","BC 18","bc_sql",,0

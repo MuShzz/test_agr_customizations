@@ -1,0 +1,11 @@
+CREATE VIEW [cus].[v_customer]
+AS
+
+    SELECT
+        CAST(CUSTNMBR AS NVARCHAR(255)) AS NO,
+        CAST(CUSTNAME AS NVARCHAR(255)) AS NAME,
+        CAST(NULL AS NVARCHAR(255)) AS [CUSTOMER_GROUP_NO],
+        [Company]
+    FROM
+        [cus].[RM00101] 
+

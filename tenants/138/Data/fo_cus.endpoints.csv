@@ -1,0 +1,12 @@
+id,step_name,endpoint,endpoint_schema,task_type,db_schema,db_table,priority,is_active,pre_sql_exec,pre_sql,select_sql,from_sql,where_sql,post_sql,columns_to_merge
+2,"InventDim DataEntity","InventDim DataEntity","xlsx",0,"fo","InventDim",2,True,,,,,,,
+3,"InventTrans DataEntity","InventTrans DataEntity","xlsx",0,"fo_cus","InventTrans",3,True,,,,,,,
+5,"Item coverage V2","Item coverage V2","xlsx",0,"fo_cus","ProductExtraInfo",5,True,,,,,,,
+9,"Purchase order lines V2","Purchase order lines V2","xlsx",0,"fo_cus","PurchaseOrderLines",9,True,,,,,,,
+17,"BOMHeader","Bill of materials headers","xlsx",0,"fo","BOMHeaders",0,False,,,,,,,
+18,"BOMLines","Bill of materials lines V3","xlsx",0,"fo","BOMLines",0,False,,,,,,,
+20,"PurchasePriceAgreements","Purchase price agreements","xlsx",0,"fo_cus","PurchasePriceAgreements",0,True,,"TRUNCATE TABLE fo_cus.PurchasePriceAgreements",,,,,
+22,"ReqPo","ReqPo DataEntity","xlsx",0,"fo_cus","ReqPo",22,True,,,,,,,
+300,"InventDim DataEntity","InventDim DataEntity","txt",0,"fo_cus","InventDim",300,False,,,,,,,
+301,"InventTrans DataEntity","InventTrans DataEntity","txt",0,"fo_cus","InventTrans",301,False,,,,,,,
+50000,"CustomColumns_Products","Released products V2","xlsx",0,"fo_cus","CustomColumns_Products",50000,True,,,,,,,

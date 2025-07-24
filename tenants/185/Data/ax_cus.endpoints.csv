@@ -1,0 +1,29 @@
+id,step_name,endpoint,endpoint_schema,task_type,db_schema,db_table,priority,is_active,pre_sql_exec,pre_sql,select_sql,from_sql,where_sql,post_sql,columns_to_merge,dataareaid
+1,"INVENTTABLE","INVENTTABLE",,0,"ax_cus","INVENTTABLE",1,True,,,,,,,,
+6,"INVENTDIM","INVENTDIM",,0,"ax_cus","INVENTDIM",6,True,,,,,,,,
+8,"InventTableModule","INVENTTABLEMODULE",,0,"ax_cus","INVENTTABLEMODULE",8,True,,,,,,,,
+10,"Transactions","INVENTTRANS",,7,"ax","INVENTTRANS",10,True,"  SELECT @pre_sql =
+     'DECLARE @max_entry_no DATE = ''' 
+       + CONVERT(VARCHAR(10),
+                 ISNULL((SELECT MAX([DATEPHYSICAL])    FROM [ax].[INVENTTRANS]),
+                        '1900-01-01'),
+                 23)                                 --
+       + ''', @max_modified_date DATETIME = '''
+       + CONVERT(VARCHAR(23),
+                 ISNULL((SELECT MAX([MODIFIEDDATETIME]) FROM [ax].[INVENTTRANS]),
+                        '1900-01-01'),
+                 121)                                
+       + ''';';",,,,"[DATEPHYSICAL] > @max_entry_no OR ([DATEPHYSICAL] = @max_entry_no and [MODIFIEDDATETIME] > @max_modified_date) AND [DATAAREAID]='OSI'
+",,,
+15,"INVENTTRANSORIGIN","INVENTTRANSORIGIN",,0,"ax_cus","INVENTTRANSORIGIN",15,True,,,,,,,,
+100,"UNITOFMEASURE","UNITOFMEASURE",,0,"ax_cus","UNITOFMEASURE",100,True,,,,,,,,
+101,"UNITOFMEASURECONVERSION","UNITOFMEASURECONVERSION",,0,"ax_cus","UNITOFMEASURECONVERSION",101,True,,,,,,,,
+102,"INVENTBUYERGROUP","INVENTBUYERGROUP",,0,"ax_cus","INVENTBUYERGROUP",102,True,,,,,,,,
+103,"ECORESCATEGORY","ECORESCATEGORY",,0,"ax_cus","ECORESCATEGORY",103,True,,,,,,,,
+104,"ECORESCATEGORYHIERARCHY","ECORESCATEGORYHIERARCHY",,0,"ax_cus","ECORESCATEGORYHIERARCHY",104,True,,,,,,,,
+105,"ECORESCATEGORYHIERARCHYROLE","ECORESCATEGORYHIERARCHYROLE",,0,"ax_cus","ECORESCATEGORYHIERARCHYROLE",105,True,,,,,,,,
+106,"ECORESPRODUCTCATEGORY","ECORESPRODUCTCATEGORY",,0,"ax_cus","ECORESPRODUCTCATEGORY",106,True,,,,,,,,
+107,"ECORESPRODUCT","ECORESPRODUCT",,0,"ax_cus","ECORESPRODUCT",107,True,,,,,,,,
+108,"INVENTBATCH","INVENTBATCH",,0,"ax_cus","INVENTBATCH",108,True,,,,,,,,
+109,"WHSINVENTSTATUS","WHSINVENTSTATUS",,0,"ax_cus","WHSINVENTSTATUS",109,True,,,,,,,,
+110,"SALESTABLE","SALESTABLE",,0,"ax_cus","SALESTABLE",110,True,,,,,,,,

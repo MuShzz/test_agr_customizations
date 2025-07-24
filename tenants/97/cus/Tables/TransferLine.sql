@@ -1,0 +1,22 @@
+CREATE TABLE [cus].[TransferLine] (
+    [Document No_] NVARCHAR(20) NOT NULL,
+    [Line No_] INT NOT NULL,
+    [Item No_] NVARCHAR(20) NOT NULL,
+    [Quantity] DECIMAL(38,20) NOT NULL,
+    [Unit of Measure] NVARCHAR(50) NOT NULL,
+    [Quantity Received] DECIMAL(38,20) NOT NULL,
+    [Status] INT NOT NULL,
+    [Quantity (Base)] DECIMAL(38,20) NOT NULL,
+    [Outstanding Qty_ (Base)] DECIMAL(38,20) NOT NULL,
+    [Qty_ Received (Base)] DECIMAL(38,20) NOT NULL,
+    [Qty_ per Unit of Measure] DECIMAL(38,20) NOT NULL,
+    [Unit of Measure Code] NVARCHAR(10) NOT NULL,
+    [Outstanding Quantity] DECIMAL(38,20) NOT NULL,
+    [Transfer-from Code] NVARCHAR(10) NOT NULL,
+    [Transfer-to Code] NVARCHAR(10) NOT NULL,
+    [Shipment Date] DATETIME2 NOT NULL,
+    [Receipt Date] DATETIME2 NOT NULL,
+    [Variant Code] NVARCHAR(10) NULL,
+    [Company] NVARCHAR(3) NOT NULL,
+    CONSTRAINT [PK_cus_TransferLine] PRIMARY KEY (Company,Document No_,Line No_)
+);

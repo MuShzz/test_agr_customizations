@@ -1,0 +1,13 @@
+
+
+CREATE VIEW [nav_cus].[v_cc_avgSaleLast3Months]
+AS
+
+	SELECT
+		sh.ITEM_NO AS ITEM_NO,
+		CAST(SUM(sh.SALE)/3 AS INT) AS avgSaleLast3Months
+	FROM adi.SALES_HISTORY sh
+	WHERE sh.DATE >= DATEADD(MONTH, -3, CAST(GETDATE() AS DATE))
+	GROUP BY sh.ITEM_NO
+
+

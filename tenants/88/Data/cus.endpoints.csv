@@ -1,0 +1,12 @@
+id,step_name,endpoint,endpoint_schema,task_type,db_schema,db_table,priority,is_active,pre_sql_exec,pre_sql,select_sql,from_sql,where_sql,post_sql,columns_to_merge
+1,"INVENTABLE","INVENTABLE","dbo",0,"cus","INVENTABLE",1,True,,,,,,,
+2,"INVENLOCATION","INVENLOCATION","dbo",0,"cus","INVENLOCATION",2,True,,,,,,,
+3,"INVENITEMGROUP","INVENITEMGROUP","dbo",0,"cus","INVENITEMGROUP",3,True,,,,,,,
+4,"INVENPRICE","INVENPRICE","dbo",0,"cus","INVENPRICE",4,True,,,,,,,
+5,"INVENTRANS","INVENTRANS","dbo",0,"cus","INVENTRANS",5,True,,,,,"[DATASET] = 'DAT'",,
+6,"PURCHLINE","PURCHLINE","dbo",0,"cus","PURCHLINE",6,True,,,,,,,
+7,"SALESLINE","SALESLINE","dbo",0,"cus","SALESLINE",7,True,,,,,,,
+8,"VENDTABLE","VENDTABLE","dbo",0,"cus","VENDTABLE",8,True,,,,,,,
+9,"INVENTORYSUM","INVENTORYSUM","dbo",0,"cus","INVENTORYSUM",9,True,,,,,,,
+10,"CUSTTABLE","CUSTTABLE","dbo",0,"cus","CUSTTABLE",10,True,,,,,,,
+11,"SALESTABLE","SALESTABLE","dbo",0,"cus","SALESTABLE",11,True,,,,,,,

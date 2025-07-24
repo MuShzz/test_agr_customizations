@@ -1,0 +1,22 @@
+CREATE TABLE [cus].[bom_component] (
+    [LineNo] INT NOT NULL,
+    [ParentItemNo] VARCHAR(20) NOT NULL,
+    [Description] VARCHAR(100) NOT NULL,
+    [InstalledinItemNo] VARCHAR(20) NOT NULL,
+    [InstalledinLineNo] INT NOT NULL,
+    [LeadTimeOffset] VARCHAR(32) NOT NULL,
+    [MachineNo] VARCHAR(10) NOT NULL,
+    [No] VARCHAR(20) NOT NULL,
+    [Position] VARCHAR(10) NOT NULL,
+    [Position2] VARCHAR(10) NOT NULL,
+    [Position3] VARCHAR(10) NOT NULL,
+    [Quantityper] DECIMAL(18,4) NOT NULL,
+    [ResourceUsageType] VARCHAR(20) NOT NULL,
+    [Type] NVARCHAR(20) NOT NULL,
+    [UnitofMeasureCode] NVARCHAR(10) NOT NULL,
+    [VariantCode] VARCHAR(10) NOT NULL,
+    [AssemblyBOM] BIT NOT NULL,
+    [BOMDescription] VARCHAR(100) NULL,
+    [Company] NVARCHAR(3) NOT NULL,
+    CONSTRAINT [PK_cus_bom_component] PRIMARY KEY (Company,LineNo,ParentItemNo)
+);

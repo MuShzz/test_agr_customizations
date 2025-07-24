@@ -1,0 +1,3 @@
+id,step_name,endpoint,endpoint_schema,task_type,db_schema,db_table,priority,is_active,pre_sql_exec,pre_sql,select_sql,from_sql,where_sql,post_sql,columns_to_merge
+14,"AGR_SALES_HISTORY","AGR_SALES_HISTORY","dbo",0,"cos_cus","AGR_SALES_HISTORY",14,True,,,,,,,"[TRANSACTION_ID],[ITEM_NO],[LOCATION_NO],[DATE],[SALE],[CUSTOMER_NO],[REFERENCE_NO],[IS_SALES_ORDER],[IS_EXCLUDED]"
+15,"AGR_STOCK_HISTORY","AGR_STOCK_HISTORY","dbo",7,"cos_cus","AGR_STOCK_HISTORY",15,True,,,,,,,"[TRANSACTION_ID],[ITEM_NO],[LOCATION_NO],[DATE],[STOCK_MOVE]"

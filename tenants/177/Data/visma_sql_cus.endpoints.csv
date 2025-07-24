@@ -1,0 +1,2 @@
+id,step_name,endpoint,endpoint_schema,task_type,db_schema,db_table,priority,is_active,pre_sql_exec,pre_sql,select_sql,from_sql,where_sql,post_sql,columns_to_merge
+50001,"product","Prod",,0,"visma_sql_cus","Prod",50001,True,,,,,,,

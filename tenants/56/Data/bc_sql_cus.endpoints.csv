@@ -1,0 +1,3 @@
+id,step_name,endpoint,task_type,db_schema,db_table,priority,is_active,pre_sql_exec,pre_sql,select_sql,from_sql,where_sql,post_sql
+9,"Vendors","Vendor",0,"bc_sql","Vendor",9,True,,,,,"[No_] <> 'WW'",
+50000,"CustomColumnItems","Item",0,"bc_sql_cus","CustomColumns_Item",50000,True,,,"[No_],[Vendor No_], [ABC Class], [Item Category Code],[Product Group Code],[Item Stat Group],[Search Description]",,,

@@ -1,0 +1,5 @@
+company,company_name,table_post_fix,table_pre_fix,priority,is_active,order_transfer_url
+"SAD","SAD Scandlines Deutschland GmbH",,"SAD",1,True,
+"SCS","SCS Scandlines Catering ApS",,"SCS",2,True,
+"SBR","SBR Scandlines Bordershop Puttgarden GmbH",,"SBR",3,True,
+"SBP","SBP Scandlines Bordershop Rostock GmbH",,"SBP",4,True,

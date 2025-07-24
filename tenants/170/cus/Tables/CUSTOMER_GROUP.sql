@@ -1,0 +1,5 @@
+CREATE TABLE [cus].[CUSTOMER_GROUP] (
+    [NO] NVARCHAR(255) NOT NULL,
+    [NAME] NVARCHAR(255) NULL,
+    CONSTRAINT [pk_adi_customer_group] PRIMARY KEY (NO)
+);

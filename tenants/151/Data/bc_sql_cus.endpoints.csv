@@ -1,0 +1,4 @@
+id,step_name,endpoint,task_type,db_schema,db_table,priority,is_active,pre_sql_exec,pre_sql,select_sql,from_sql,where_sql,post_sql
+17,"AssemblyBOMComponent","BOM Component",0,"bc_sql","BOMComponent",17,False,,,,,,
+18,"ProductionBOMHeader","Production BOM Header",0,"bc_sql","ProductionBOMHeader",18,False,,,,,,
+19,"ProductionBOMLine","Production BOM Line",0,"bc_sql","ProductionBOMLine",19,False,,,,,,

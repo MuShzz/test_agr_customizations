@@ -1,0 +1,20 @@
+
+
+CREATE VIEW [bc_rest_cus].[v_SALES_HISTORY_LEGACY]
+AS
+	SELECT
+          CAST(shl.ITEM_NO AS NVARCHAR(255)) AS [ITEM_NO],
+          CAST(shl.LOCATION_NO AS NVARCHAR(255)) AS [LOCATION_NO],
+          CAST(shl.DATE AS DATE) AS [DATE],
+          CAST(SUM(shl.SALE) AS DECIMAL(18,4)) AS [SALE],
+		  CAST(ISNULL(shl.CUSTOMER_NO, 'agr_no_customer') AS NVARCHAR(255)) AS CUSTOMER_NO,
+		  CAST('' AS NVARCHAR(255)) AS REFERENCE_NO
+    FROM
+         bc_rest_cus.SALE_HISTORY_LEGACY_20250616 shl
+    GROUP BY
+         shl.ITEM_NO,
+		 shl.LOCATION_NO,
+		 shl.DATE,
+		 CAST(ISNULL(shl.CUSTOMER_NO, 'agr_no_customer') AS NVARCHAR(255))
+   
+

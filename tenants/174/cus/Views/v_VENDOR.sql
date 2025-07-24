@@ -1,0 +1,12 @@
+
+CREATE VIEW [cus].[v_VENDOR]
+AS
+
+    SELECT
+        CAST(ACCOUNTNUM AS NVARCHAR(255))                 AS [NO],
+        CAST(NAME AS NVARCHAR(255))               AS [NAME],
+        CAST(ISNULL(AGRDELIVERYTIME,0) AS SMALLINT)  AS [LEAD_TIME_DAYS],
+        CAST(AGRBLOCKED AS BIT)                         AS [CLOSED]
+    FROM
+        CUS.VENDTABLE
+

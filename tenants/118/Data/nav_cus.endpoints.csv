@@ -1,0 +1,3 @@
+id,step_name,endpoint,task_type,db_schema,db_table,priority,is_active,pre_sql_exec,pre_sql,select_sql,from_sql,where_sql,post_sql
+50000,"CCTransferOrderMultiple","Item",0,"nav_cus","cc_transfer_multiple",50000,True,,,,,,
+50001,"ItemExtraInfo","Item",0,"nav_cus","ItemExtraInfo",50001,True,,,,,,

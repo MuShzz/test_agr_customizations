@@ -1,0 +1,2 @@
+id,step_name,endpoint,task_type,db_schema,db_table,endpoint_filter,priority,is_active,post_sql
+25,"Varer","varer",0,"bc_rest_cus","varer","?$select=No,Item_Group_Code",25,True,

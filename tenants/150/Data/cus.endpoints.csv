@@ -1,0 +1,15 @@
+id,step_name,endpoint,endpoint_filter,task_type,db_schema,db_table,db_table_destiny,table_array,priority,is_active,collection,keyarray,iq_date_field,date_field
+1,"Step_StockBin","StockBin?offset={offset}&fetch=2000",,0,"cus","StockBin",,,1,False,"Data","ID",,
+2,"Step_ProductDetails","ProductDetails?offset={offset}&fetch=2000",,0,"cus","ProductDetails","ProductStockBin","$StockBinStatistics",1,True,"Data","ID",,
+3,"Step_PurchaseOrder","PurchaseOrder?offset={offset}&fetch=2000",,0,"cus","PurchaseOrder","PurchaseOrderItems","$Items",1,True,"Data","ID",,
+4,"Step_Vendor","Vendor?offset={offset}&fetch=2000",,0,"cus","Vendor",,,1,True,"Data","ID",,
+5,"Step_Customer","Customer?offset={offset}&fetch=2000",,0,"cus","Customer",,,1,True,"Data","ID",,
+6,"Step_Branch","Branch?offset={offset}&fetch=2000",,0,"cus","Branch",,,1,True,"Data","ID",,
+7,"Step_SalesInvoice","SalesInvoice?offset={offset}&fetch=2000",,7,"cus","SalesInvoice","SalesInvoiceItems","$Items",1,True,"Data","ID","UpdatedOn","UpdatedOn"
+8,"Step_SalesOrder","SalesOrder?offset={offset}&fetch=2000",,0,"cus","SalesOrder","SalesOrderItems","$Items",1,True,"Data","ID","UpdatedOn","UpdatedOn"
+9,"Step_StockMovements","StockMovements?offset={offset}&fetch=2000",,0,"cus","StockMovements",,,1,True,"Data","ID",,
+10,"Step_ProductBranchStatistics","ProductBranchStatistics?offset={offset}&fetch=2000",,0,"cus","ProductBranchStatistics",,,1,True,"Data","ID",,
+11,"Step_Assembly","Assembly?offset={offset}&fetch=2000",,0,"cus","Assembly",,,1,True,"Data","ID",,
+12,"Step_BOMConsumption","BOMConsumption?offset={offset}&fetch=2000",,0,"cus","BOMConsumption",,,1,True,"Data","ID",,
+13,"Step_SalesOrderLines","SalesOrderLines?offset={offset}&fetch=2000&_Owner_.WorkflowStatus.Code[neq]=S",,0,"cus","SalesOrderLines",,,1,True,"Data","ID","UpdatedOn","UpdatedOn"
+14,"Step_POReceipts","POReceipts?offset={offset}&fetch=2000",,0,"cus","POReceipts",,,1,True,"Data","ID",,

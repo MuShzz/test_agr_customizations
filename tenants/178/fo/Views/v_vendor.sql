@@ -1,0 +1,11 @@
+CREATE VIEW [fo_cus].[v_vendor]
+AS
+
+    SELECT DISTINCT
+        CAST(vs.VENDORACCOUNTNUMBER AS NVARCHAR(255)) AS [NO],
+        CAST(vs.VENDORSEARCHNAME AS NVARCHAR(255)) AS [NAME],
+       CAST(1 AS SMALLINT)  AS LEAD_TIME_DAYS,
+        CAST(0 AS BIT) AS CLOSED
+    FROM
+        fo_cus.[Vendors] vs
+

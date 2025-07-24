@@ -1,0 +1,5 @@
+id,step_name,endpoint,task_type,db_schema,db_table,priority,is_active,pre_sql_exec,pre_sql,select_sql,from_sql,where_sql,post_sql
+5000,"ItemExtraInfo","Item",0,"bc_sql_cus","ItemExtraInfo",5000,True,,,,,,
+5001,"ItemVariantExtraInfo","Item Variant",0,"bc_sql_cus","ItemVariantExtraInfo",5001,True,,,,,,
+5002,"CC_Brand","IsfAttribute",0,"bc_sql_cus","CC_Brand",5002,True,,,,,,
+5003,"CC_Color","IsfColor Group Color",0,"bc_sql_cus","CC_Color",5003,True,,,,,,

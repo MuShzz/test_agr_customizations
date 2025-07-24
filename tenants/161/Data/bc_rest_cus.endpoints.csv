@@ -1,0 +1,2 @@
+id,step_name,endpoint,task_type,db_schema,db_table,endpoint_filter,priority,is_active,post_sql
+5000,"AGR_Price_List_Lines","AGR_Price_List_Lines",0,"bc_rest_cus","AGR_Price_List_Lines",,5000,True,

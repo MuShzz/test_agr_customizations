@@ -1,0 +1,4 @@
+CREATE TABLE [fo_cus].[CustomColumns_Products] (
+    [ITEMNUMBER] NVARCHAR(155) NULL,
+    [BEA219ALIVEITEM] NVARCHAR(155) NULL
+);

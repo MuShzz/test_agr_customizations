@@ -1,0 +1,2 @@
+id,step_name,endpoint,task_type,db_schema,db_table,priority,is_active,pre_sql_exec,pre_sql,select_sql,from_sql,where_sql,post_sql
+20,"Customers","Customer",0,"bc_sql","Customer",20,True,,,,,"[No_] not in ('5310952279Æ','5712983769Æ','6502992649Æ')",

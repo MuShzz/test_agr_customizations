@@ -1,0 +1,4 @@
+id,step_name,endpoint,task_type,db_schema,db_table,endpoint_filter,priority,is_active,post_sql
+25,"AGRApiOrderLines","AGRApiOrderLines",0,"bc_rest","agr_api_order_lines",,25,False,
+50000,"IcewearAPI_Lsc_Retail_Item_Card","IcewearAPI_Lsc_Retail_Item_Card",0,"bc_rest_cus","lsritem",,50000,True,
+50001,"IcewearAPI_Lsc_Item_Variant_Registration","IcewearAPI_Lsc_Item_Variant_Registration",0,"bc_rest_cus","lsivr",,50001,True,

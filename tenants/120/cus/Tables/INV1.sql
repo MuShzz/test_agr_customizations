@@ -1,0 +1,22 @@
+CREATE TABLE [cus].[INV1] (
+    [DocEntry] INT NOT NULL,
+    [LineNum] INT NOT NULL,
+    [LineStatus] CHAR(1) NULL,
+    [ItemCode] NVARCHAR(50) NULL,
+    [Dscription] NVARCHAR(200) NULL,
+    [Quantity] NUMERIC(19,6) NULL,
+    [ShipDate] DATETIME NULL,
+    [OpenQty] NUMERIC(19,6) NULL,
+    [Price] NUMERIC(19,6) NULL,
+    [Currency] NVARCHAR(3) NULL,
+    [Rate] NUMERIC(19,6) NULL,
+    [WhsCode] NVARCHAR(8) NULL,
+    [DocDate] DATETIME NULL,
+    [Flags] INT NULL,
+    [OpenCreQty] NUMERIC(19,6) NULL,
+    [OpenInvQty] NUMERIC(19,6) NULL,
+    [TargetType] INT NULL,
+    [ObjType] NVARCHAR(20) NULL,
+    [BaseType] INT NULL,
+    CONSTRAINT [PK_erp_cus_INV1] PRIMARY KEY (DocEntry,LineNum)
+);

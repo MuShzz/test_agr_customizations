@@ -1,0 +1,165 @@
+CREATE VIEW [ax_cus].[v_UNDELIVERED_TRANSFER_ORDER] 
+AS
+
+	WITH transfer_order AS (
+       --Transfers from store to store (the plumbing department warehouse, LAG305, actually appears as a store in Ax and is below)
+	   SELECT
+            CAST(CONCAT('Flutningspöntun ', itl.TRANSFERID) AS VARCHAR(128))												AS [TRANSFER_ORDER_NO],
+			CAST(itl.[ITEMID]
+			+ CASE WHEN id.INVENTSIZEID  <> '' AND id.INVENTSIZEID IS NOT NULL THEN '_' + id.INVENTSIZEID ELSE '' END
+			+ CASE WHEN id.INVENTCOLORID <> '' AND id.INVENTCOLORID IS NOT NULL THEN '_' + id.INVENTCOLORID ELSE '' END
+			+ CASE WHEN id.INVENTSTYLEID <> '' AND id.INVENTSTYLEID IS NOT NULL THEN '_' + id.INVENTSTYLEID ELSE '' END 
+			 AS NVARCHAR(255))																								AS ITEM_NO,
+            CAST(
+			CASE WHEN itt.INVENTLOCATIONIDTO LIKE '%L' THEN LEFT(itt.INVENTLOCATIONIDTO, LEN(itt.INVENTLOCATIONIDTO)-1)
+				ELSE itt.INVENTLOCATIONIDTO END  AS NVARCHAR(255)) 															AS LOCATION_NO,
+            CAST(itt.INVENTLOCATIONIDFROM AS NVARCHAR(255))    																AS [ORDER_FROM_LOCATION_NO],
+			CAST(IIF(itl.RECEIVEDATE='1900-01-01 00:00:00.000', GETDATE(), itl.RECEIVEDATE) AS DATE)                      	AS [DELIVERY_DATE],
+            SUM(CAST(itl.QTYREMAINRECEIVE AS DECIMAL(18,4)))   																AS [QUANTITY],
+            CAST(itl.DATAAREAID AS NVARCHAR(4))                																AS [COMPANY],
+			3 																												AS origin
+       FROM [ax_cus].[INVENTTRANSFERLINE] itl
+	   INNER JOIN ax.INVENTDIM id					ON id.inventdimid = itl.inventdimid AND id.DATAAREAID = itl.DATAAREAID AND id.[PARTITION] = itl.[PARTITION]
+		INNER JOIN [ax].[INVENTTRANSFERTABLE] itt ON itl.TRANSFERID = itt.TRANSFERID AND itl.DATAAREAID = itt.DATAAREAID AND itl.PARTITION = itt.PARTITION
+	   WHERE	
+		itt.TRANSFERSTATUS < 2
+		AND itl.QTYREMAINRECEIVE>0
+		AND itl.PARTITION ='5637144576'
+	   GROUP BY 
+	   CAST(CONCAT('Flutningspöntun ', itl.TRANSFERID) AS VARCHAR(128)),
+	   CAST(itl.[ITEMID]
+	   			+ CASE WHEN id.INVENTSIZEID  <> '' AND id.INVENTSIZEID IS NOT NULL THEN '_' + id.INVENTSIZEID ELSE '' END
+	   			+ CASE WHEN id.INVENTCOLORID <> '' AND id.INVENTCOLORID IS NOT NULL THEN '_' + id.INVENTCOLORID ELSE '' END
+	   			+ CASE WHEN id.INVENTSTYLEID <> '' AND id.INVENTSTYLEID IS NOT NULL THEN '_' + id.INVENTSTYLEID ELSE '' END 
+	   			 AS NVARCHAR(255)),
+	   itt.INVENTLOCATIONIDTO, itt.INVENTLOCATIONIDFROM,
+	   CAST(IIF(itl.RECEIVEDATE='1900-01-01 00:00:00.000', GETDATE(), itl.RECEIVEDATE) AS DATE), 
+	   itl.DATAAREAID
+	   HAVING SUM(CAST(itl.QTYREMAINRECEIVE AS DECIMAL(18,4))) <>0
+
+	   UNION ALL
+       -- Purchases
+	   SELECT 
+			CAST(CONCAT('Sölupöntun ', s.SALESID) AS NVARCHAR(128))																AS TRANSFER_ORDER_NO,
+			CAST(it.[ITEMID]
+				+ CASE WHEN id.INVENTSIZEID  <> '' AND id.INVENTSIZEID IS NOT NULL THEN '_' + id.INVENTSIZEID ELSE '' END
+				+ CASE WHEN id.INVENTCOLORID <> '' AND id.INVENTCOLORID IS NOT NULL THEN '_' + id.INVENTCOLORID ELSE '' END
+				+ CASE WHEN id.INVENTSTYLEID <> '' AND id.INVENTSTYLEID IS NOT NULL THEN '_' + id.INVENTSTYLEID ELSE '' END 
+				 AS NVARCHAR(255))																								AS ITEM_NO,
+			CAST(s.INVENTLOCATIONID AS NVARCHAR(255))																			AS LOCATION_NO,
+			CAST(s.INVENTLOCATIONID AS NVARCHAR(255))																			AS ORDER_FROM_LOCATION_NO,
+			CAST(s.DELIVERYDATE AS DATE)																						AS DELIVERY_DATE,
+			CAST(SUM(it.QTY) AS DECIMAL(18,4))																					AS QUANTITY,
+			CAST(ito.DATAAREAID AS NVARCHAR(4))                																	AS [COMPANY],
+			1																													AS origin
+		 FROM 
+			ax.INVENTTRANS it
+			INNER JOIN ax_cus.INVENTTRANSORIGIN ito		ON ito.RECID		= it.INVENTTRANSORIGIN AND it.DATAAREAID = ito.DATAAREAID AND it.[PARTITION] = ito.[PARTITION]
+			INNER JOIN ax.INVENTDIM id					ON id.inventdimid	= it.inventdimid AND id.DATAAREAID = it.DATAAREAID AND id.[PARTITION] = ito.[PARTITION]
+			INNER JOIN ax_cus.SALESTABLE s				ON s.SALESID		= ito.REFERENCEID AND s.DATAAREAID = ito.DATAAREAID AND s.[PARTITION] = ito.[PARTITION]
+			INNER JOIN core.location_mapping_setup lms  ON lms.locationNo	= s.INVENTLOCATIONID
+
+		WHERE 
+			ito.REFERENCECATEGORY = 0
+			AND it.QTY > 0			
+			AND it.STATUSISSUE <> 1
+			AND it.DATEPHYSICAL = '1900-01-01 00:00:00.000' 		
+			AND it.PARTITION ='5637144576'		
+
+		GROUP BY 
+			CAST(s.DELIVERYDATE AS DATE),
+			CAST(it.[ITEMID]
+						+ CASE WHEN id.INVENTSIZEID  <> '' AND id.INVENTSIZEID IS NOT NULL THEN '_' + id.INVENTSIZEID ELSE '' END
+						+ CASE WHEN id.INVENTCOLORID <> '' AND id.INVENTCOLORID IS NOT NULL THEN '_' + id.INVENTCOLORID ELSE '' END
+						+ CASE WHEN id.INVENTSTYLEID <> '' AND id.INVENTSTYLEID IS NOT NULL THEN '_' + id.INVENTSTYLEID ELSE '' END 
+						 AS NVARCHAR(255)),
+			s.INVENTLOCATIONID,
+			s.SALESID,
+			ito.DATAAREAID
+
+		UNION ALL
+
+		--Transfers from warehouse to store
+		SELECT 
+			 CAST('Flutningsbók ' + itb.JOURNALID + ' (staða: ' + CASE
+																WHEN itr.BYKDOLPHININVENTJOURNALTRANSSTATUS = 10 THEN 'Stofnað'
+																WHEN itr.BYKDOLPHININVENTJOURNALTRANSSTATUS = 20 THEN 'Sent í vöruhús'
+																WHEN itr.BYKDOLPHININVENTJOURNALTRANSSTATUS = 40 THEN 'Í vinnslu í vöruhúsi'
+																WHEN itr.BYKDOLPHININVENTJOURNALTRANSSTATUS = 60 THEN 'Afgreiðslu lokið'
+																WHEN itr.BYKDOLPHININVENTJOURNALTRANSSTATUS = 70 THEN 'Hætt við afgreiðslu í vöruhúsi'
+																ELSE CAST(itr.BYKDOLPHININVENTJOURNALTRANSSTATUS AS NVARCHAR(50))
+															  END + ') ' + id.INVENTLOCATIONID
+														AS NVARCHAR(128))
+																																AS  TRANSFER_ORDER_NO,
+			CAST(itr.[ITEMID]
+				+ CASE WHEN id.INVENTSIZEID  <> '' AND id.INVENTSIZEID IS NOT NULL THEN '_' + id.INVENTSIZEID ELSE '' END
+				+ CASE WHEN id.INVENTCOLORID <> '' AND id.INVENTCOLORID IS NOT NULL THEN '_' + id.INVENTCOLORID ELSE '' END
+				+ CASE WHEN id.INVENTSTYLEID <> '' AND id.INVENTSTYLEID IS NOT NULL THEN '_' + id.INVENTSTYLEID ELSE '' END 
+				 AS NVARCHAR(255))																								AS ITEM_NO,
+			CAST(id.INVENTLOCATIONID AS NVARCHAR(255))																			AS LOCATION_NO,
+			CAST(id.INVENTLOCATIONID AS NVARCHAR(255))																			AS ORDER_FROM_LOCATION_NO,		
+			CAST(DATEADD(DAY, 1, itr.TRANSDATE) AS DATE)																		AS DELIVERY_DATE,
+			CAST(SUM(-itr.QTY) - SUM(ISNULL(-itr_dolph.QTY, 0)) AS DECIMAL(18,4))												AS QUANTITY,
+			CAST(itb.DATAAREAID AS NVARCHAR(4))                																	AS [COMPANY],
+			2																													AS origin
+		FROM 
+			ax_cus.INVENTJOURNALTABLE itb
+			INNER JOIN ax_cus.INVENTJOURNALTRANS itr		ON itr.journalid = itb.journalid
+																AND itb.PARTITION = itr.PARTITION
+																AND itb.dataareaid = itr.dataareaid
+
+			LEFT JOIN ax_cus.INVENTJOURNALTRANS itr_dolph	ON itr_dolph.BYKDOLPHININVENTJOURNALSOURCE = itr.journalid
+																AND itr_dolph.TOINVENTDIMID = itr.TOINVENTDIMID
+																AND itr_dolph.ITEMID = itr.ITEMID
+																AND itr_dolph.PARTITION = itr.PARTITION
+																AND itr_dolph.dataareaid = itr.dataareaid
+			INNER JOIN ax.InventDim id					ON id.INVENTDIMID = itr.TOINVENTDIMID
+																AND id.DATAAREAID = itr.DATAAREAID
+																AND id.PARTITION=itr.PARTITION 
+			INNER JOIN core.location_mapping_setup lms		ON lms.locationNo = id.INVENTLOCATIONID
+		WHERE
+			itr.BYKDOLPHININVENTJOURNALTRANSSTATUS <= 40
+			AND itb.JOURNALID NOT LIKE 'IK%'
+			AND itr.VOUCHER = ''
+			AND itr.PARTITION ='5637144576'
+
+		GROUP BY 
+			CAST('Flutningsbók ' + itb.JOURNALID + ' (staða: ' + CASE
+																			WHEN itr.BYKDOLPHININVENTJOURNALTRANSSTATUS = 10 THEN 'Stofnað'
+																			WHEN itr.BYKDOLPHININVENTJOURNALTRANSSTATUS = 20 THEN 'Sent í vöruhús'
+																			WHEN itr.BYKDOLPHININVENTJOURNALTRANSSTATUS = 40 THEN 'Í vinnslu í vöruhúsi'
+																			WHEN itr.BYKDOLPHININVENTJOURNALTRANSSTATUS = 60 THEN 'Afgreiðslu lokið'
+																			WHEN itr.BYKDOLPHININVENTJOURNALTRANSSTATUS = 70 THEN 'Hætt við afgreiðslu í vöruhúsi'
+																			ELSE CAST(itr.BYKDOLPHININVENTJOURNALTRANSSTATUS AS NVARCHAR(50))
+																		  END + ') ' + id.INVENTLOCATIONID
+																	AS NVARCHAR(128)),
+			CAST(itr.[ITEMID]
+							+ CASE WHEN id.INVENTSIZEID  <> '' AND id.INVENTSIZEID IS NOT NULL THEN '_' + id.INVENTSIZEID ELSE '' END
+							+ CASE WHEN id.INVENTCOLORID <> '' AND id.INVENTCOLORID IS NOT NULL THEN '_' + id.INVENTCOLORID ELSE '' END
+							+ CASE WHEN id.INVENTSTYLEID <> '' AND id.INVENTSTYLEID IS NOT NULL THEN '_' + id.INVENTSTYLEID ELSE '' END 
+							 AS NVARCHAR(255)),
+			id.INVENTLOCATIONID,
+			CAST(DATEADD(DAY, 1, itr.TRANSDATE) AS DATE),
+			itr.BYKDOLPHININVENTJOURNALTRANSSTATUS,
+			itb.DATAAREAID
+		HAVING 
+			SUM(-itr.QTY) - SUM(ISNULL(-itr_dolph.QTY,0)) > 0
+	   )
+
+
+	   SELECT 
+	   TRANSFER_ORDER_NO, 
+	   ITEM_NO, 
+	   LOCATION_NO, 
+	   ORDER_FROM_LOCATION_NO,
+	   DELIVERY_DATE,
+	   QUANTITY,  
+	   MAX(origin) AS origin, 
+	   COMPANY
+	FROM transfer_order tor 
+	INNER JOIN core.location_mapping_setup lms ON lms.locationNo=tor.LOCATION_NO
+	GROUP BY TRANSFER_ORDER_NO, ITEM_NO, LOCATION_NO, ORDER_FROM_LOCATION_NO
+	, QUANTITY, DELIVERY_DATE, COMPANY
+
+
+

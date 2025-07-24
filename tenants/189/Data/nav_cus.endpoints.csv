@@ -1,0 +1,4 @@
+id,step_name,endpoint,task_type,db_schema,db_table,priority,is_active,pre_sql_exec,pre_sql,select_sql,from_sql,where_sql,post_sql
+10000,"ItemsExtraInfo","Item",0,"nav_cus","ItemExtraInfo",10000,True,,,,,,
+10001,"AGRExtenedItem","AGR Extended Item",0,"nav_cus","AGR Extended Item",10001,True,,,,,,
+10002,"VendorExtraInfo","Vendor",0,"nav_cus","VendorExtraInfo",10002,True,,,,,,

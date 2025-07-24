@@ -1,0 +1,2 @@
+id,step_name,endpoint,task_type,db_schema,db_table,endpoint_filter,priority,is_active,post_sql
+50001,"CustomColumnItems","Item_Card_Excel",0,"bc_rest_cus","CustomColumns_Item_Rest","?$select=No,Level1,Level2,Level3,Level4",50001,True,

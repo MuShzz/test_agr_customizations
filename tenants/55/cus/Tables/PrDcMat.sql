@@ -1,0 +1,10 @@
+CREATE TABLE [cus].[PrDcMat] (
+    [LnNo] NVARCHAR(250) NOT NULL,
+    [OrdNo] NVARCHAR(50) NULL,
+    [ProdNo] NVARCHAR(50) NULL,
+    [SalePr] NVARCHAR(250) NULL,
+    [SaleDcP] DECIMAL(18,4) NULL,
+    [CustNo] NVARCHAR(250) NULL,
+    [Inf] NVARCHAR(255) NULL,
+    CONSTRAINT [PK_cus_PrDcMat] PRIMARY KEY (LnNo)
+);

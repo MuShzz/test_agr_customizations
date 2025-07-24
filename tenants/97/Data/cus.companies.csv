@@ -1,0 +1,4 @@
+company,company_name,priority,erp_endpoint,erp_token,erp_user,erp_secret,erp_scope,is_active,order_endpoint
+"BLI","BL",1,"","","","","",True,""
+"HYU","HYUNDAI",2,"","","","","",True,""
+"JLR","JLR",3,"","","","","",True,""

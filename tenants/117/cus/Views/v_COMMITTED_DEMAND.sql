@@ -1,0 +1,23 @@
+CREATE VIEW [cus].[v_COMMITTED_DEMAND] AS
+	
+	SELECT
+		CAST(jm.PartNum AS NVARCHAR(255)) AS [ITEM_NO],
+		CAST(jm.Plant AS NVARCHAR(255)) AS [LOCATION_NO],
+		CAST(CASE 
+				WHEN ISNULL(jm.ReqDate, GETDATE()) < GETDATE() THEN GETDATE()
+				ELSE ISNULL(jm.ReqDate, GETDATE())
+			END AS DATE) AS [DEMAND_DATE],
+		SUM(CAST(jm.IssuedQty AS DECIMAL(18, 4))) AS [QUANTITY]
+	FROM cus.JobMtl jm
+	WHERE 1=0 --BF shutting off
+	and jm.JobComplete=0
+	AND jm.JobNum NOT LIKE 'PMRP%'
+	AND jm.IssuedQty>0
+	GROUP BY
+		jm.PartNum,
+		jm.Plant,
+		CAST(CASE 
+				WHEN ISNULL(jm.ReqDate, GETDATE()) < GETDATE() THEN GETDATE()
+				ELSE ISNULL(jm.ReqDate, GETDATE())
+			END AS DATE)
+	HAVING SUM(CAST(jm.IssuedQty AS DECIMAL(18, 4)))<>0

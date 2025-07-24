@@ -1,0 +1,17 @@
+CREATE PROCEDURE [ax_cus].[populate_item]
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    TRUNCATE TABLE [ax_cus].[Item_v];
+
+    INSERT INTO [ax_cus].[Item_v]
+    SELECT * FROM [ax_cus].[v_item];
+
+    TRUNCATE TABLE [ax_cus].[PRODUCT_PURCHASE_INFO_UNIT_CONVERSION];
+
+    INSERT INTO [ax_cus].[PRODUCT_PURCHASE_INFO_UNIT_CONVERSION]
+    SELECT * FROM ax_cus.v_PRODUCT_PURCHASE_INFO_UNIT_CONVERSION;
+
+    SELECT 1
+END;

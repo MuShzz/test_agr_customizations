@@ -1,0 +1,2 @@
+id,step_name,endpoint,task_type,db_schema,db_table,priority,is_active,pre_sql_exec,pre_sql,select_sql,from_sql,where_sql,post_sql
+16,"SalesOrder","Sales Header",0,"nav","SalesHeader",16,True,,,,,"Status = 1",

@@ -1,0 +1,5 @@
+id,step_name,endpoint,task_type,db_schema,db_table,priority,is_active,pre_sql_exec,pre_sql,select_sql,from_sql,where_sql,post_sql
+50000,"CustomColumnItems","Item",0,"bc_sql_cus","CustomColumns_Item",50000,True,,,"[No_], [Item Status], [Item Category Code], [Sub Analysis 1]",,,
+50001,"CustomColumnDesigner","Sub Analysis 1",0,"bc_sql_cus","CustomColumns_Designer",50001,True,,,"[Item Category Code], [Code], [Description]",,,
+50002,"CustomColumnProductType","Item$56a96efd-3239-48ee-af12-86bae995a6af",0,"bc_sql_cus","CustomColumns_ProductType",50002,True,,,"[No_], [EVS Item Analysis 1]",,,
+50003,"CustomColumnProductType2","Item Analysis 1$56a96efd-3239-48ee-af12-86bae995a6af",0,"bc_sql_cus","CustomColumns_ProductType2",50003,True,,,"[Code], [Description]",,,

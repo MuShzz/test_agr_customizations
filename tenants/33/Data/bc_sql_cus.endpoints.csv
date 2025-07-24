@@ -1,0 +1,2 @@
+id,step_name,endpoint,task_type,db_schema,db_table,priority,is_active,pre_sql_exec,pre_sql,select_sql,from_sql,where_sql,post_sql
+50001,"CustomColumns_Item","Rekstrarvörur$Item$5ecfc871-5d82-43f1-9c54-59685e82318d",0,"bc_sql_cus","CustomColumns_Item",50000,True,,,"[No_], [LSC Item Family Code]","[dbo].[Rekstrarvörur$Item$5ecfc871-5d82-43f1-9c54-59685e82318d]",,

@@ -1,0 +1,33 @@
+id,step_name,endpoint,task_type,db_schema,db_table,priority,is_active,pre_sql_exec,pre_sql,select_sql,from_sql,where_sql,post_sql
+1,"Items","Item",0,"cus","Item",1,True,,,,,,
+2,"ItemCategory","Item Category",0,"cus","ItemCategory",2,True,,,,,,
+3,"ItemLedgerEntry","Item Ledger Entry",7,"cus","ItemLedgerEntry",3,True,"SELECT @pre_sql = 'DECLARE @max_entry_no BIGINT = ' + CAST(ISNULL((SELECT MAX([Entry No_]) FROM [cus].[ItemLedgerEntry]),0) AS NVARCHAR(MAX))",,,,"[Entry No_] > @max_entry_no",
+4,"PurchaseHeader","Purchase Header",0,"cus","PurchaseHeader",4,True,,,,,,
+5,"Locations","Location",0,"cus","Location",5,True,,,,,,
+6,"PurchaseLine","Purchase Line",0,"cus","PurchaseLine",6,True,,,,,,
+7,"SKU","Stockkeeping Unit",0,"cus","StockkeepingUnit",7,True,,,,,,
+8,"TransferLine","Transfer Line",0,"cus","TransferLine",8,True,,,,,"[Document No_] <> 'TO22132588'",
+9,"Vendors","Vendor",0,"cus","Vendor",9,True,,,,,,
+11,"UnitOfMeasure","Unit of Measure",0,"cus","UnitofMeasure",11,True,,,,,,
+12,"ItemUnitOfMeasure","Item Unit of Measure",0,"cus","ItemUnitofMeasure",12,True,,,,,"LEN([Cubage]) < 27",
+13,"ItemVariant","Item Variant",0,"cus","ItemVariant",13,True,,,,,,"	INSERT INTO [cus].[ItemVariant]([Item No_], [Code], [Description], [Description 2])
+	  SELECT DISTINCT [Item No_]
+      ,'' AS [Code]
+      ,'' AS [Description]
+      ,'' AS[Description 2]
+	  FROM [cus].[ItemVariant] iv
+	  WHERE [Code] <> '' AND NOT EXISTS (SELECT 1 FROM [cus].[ItemVariant] iv2 WHERE iv.[Item No_] = iv2.[Item No_] AND [Code] = '')"
+17,"PurchRcptHeader","Purch_ Rcpt_ Header",0,"cus","PurchRcptHeader",17,False,,,,,,
+18,"PurchRcptLine","Purch_ Rcpt_ Line",0,"cus","PurchRcptLine",18,False,,,,,,
+19,"SalesLine","Sales Line",0,"cus","SalesLine",19,True,,,,,,
+20,"SalesOrder","Sales Header",0,"cus","SalesHeader",20,True,,,,,,
+21,"AssemblyBOMComponent","BOM Component",0,"cus","BOMComponent",21,False,,,,,,
+22,"ProductGroup","Product Group",0,"cus","ProductGroup",22,True,,,,,,
+23,"ProductionBOMHeader","Production BOM Header",0,"cus","ProductionBOMHeader",23,False,,,,,,
+24,"ProductionBOMLine","Production BOM Line",0,"cus","ProductionBOMLine",24,False,,,,,,
+25,"Customers","Customer",0,"cus","Customer",25,True,,,,,,
+26,"SalesShipmentHeader","Sales Shipment Header",0,"cus","SalesShipmentHeader",26,True,,,,,,
+27,"ProductSubgroup","Product Subgroup",0,"cus","ProductSubgroup",27,True,,,,,,
+28,"ReservationEntry","Reservation Entry",0,"cus","ReservationEntry",28,False,,,,,,
+29,"ServiceLineEDMS","Service Line EDMS",0,"cus","ServiceLineEDMS",29,True,,,"[Document No_],[Line No_],[Sell-to Customer No_],[No_],[Type],CAST([Quantity] AS DECIMAL(18,4)) AS [Quantity],[Location Code],[Unit of Measure],[Appl_-to Item Entry],[Shortcut Dimension 1 Code],[Shortcut Dimension 2 Code],[Shipment Date],[Gen_ Prod_ Posting Group],[Unit of Measure Code],[Requested Delivery Date],[Promised Delivery Date],[Planned Delivery Date],[Planned Shipment Date] ",,,
+500,"PurchaseLine","Purchase Line",0,"cus","PurchaseLine_test",6,True,,,,,,

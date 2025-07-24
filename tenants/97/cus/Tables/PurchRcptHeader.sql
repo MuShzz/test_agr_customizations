@@ -1,0 +1,21 @@
+CREATE TABLE [cus].[PurchRcptHeader] (
+    [No_] NVARCHAR(20) NOT NULL,
+    [Buy-from Vendor No_] NVARCHAR(20) NOT NULL,
+    [Document Date] DATE NOT NULL,
+    [Due Date] DATE NOT NULL,
+    [Expected Receipt Date] DATE NOT NULL,
+    [Inbound Whse_ Handling Time] VARCHAR(32) NOT NULL,
+    [Lead Time Calculation] VARCHAR(32) NOT NULL,
+    [Location Code] NVARCHAR(10) NOT NULL,
+    [Order Date] DATE NOT NULL,
+    [Order No_] NVARCHAR(20) NOT NULL,
+    [Posting Date] DATE NOT NULL,
+    [Posting Description] NVARCHAR(100) NOT NULL,
+    [Promised Receipt Date] DATE NOT NULL,
+    [Purchaser Code] NVARCHAR(20) NOT NULL,
+    [Requested Receipt Date] DATE NOT NULL,
+    [Ship-to Name] NVARCHAR(100) NOT NULL,
+    [ori AGR Order Id] NVARCHAR(20) NOT NULL,
+    [Company] NVARCHAR(3) NOT NULL,
+    CONSTRAINT [PK_cus_purchase_rcpt_header] PRIMARY KEY (Company,No_)
+);

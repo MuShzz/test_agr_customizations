@@ -1,0 +1,20 @@
+CREATE TABLE [cus].[PlantData] (
+    [PurchasingInfoRecord] BIGINT NOT NULL,
+    [PurchasingOrganization] NVARCHAR(50) NOT NULL,
+    [Plant] NVARCHAR(50) NULL,
+    [IsMarkedForDeletion] BIT NULL,
+    [Currency] NVARCHAR(255) NULL,
+    [MinimumPurchaseOrderQuantity] NVARCHAR(255) NULL,
+    [StandardPurchaseOrderQuantity] NVARCHAR(255) NULL,
+    [MaterialPlannedDeliveryDurn] NVARCHAR(255) NULL,
+    [Material] NVARCHAR(255) NULL,
+    [Supplier] NVARCHAR(255) NULL,
+    [MaterialGroup] NVARCHAR(255) NULL,
+    [PurgDocOrderQuantityUnit] NVARCHAR(255) NULL,
+    [NetPriceQuantityUnit] NVARCHAR(255) NULL,
+    [NetPriceAmount] NVARCHAR(255) NULL,
+    [MaterialPriceUnitQty] NVARCHAR(255) NULL,
+    [PurchaseOrderPriceUnit] NVARCHAR(255) NULL,
+    [PriceValidityEndDate] DATETIME2 NULL,
+    CONSTRAINT [PK_PlantData] PRIMARY KEY (PurchasingInfoRecord,PurchasingOrganization)
+);

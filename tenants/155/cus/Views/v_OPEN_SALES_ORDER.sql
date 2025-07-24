@@ -1,0 +1,23 @@
+CREATE VIEW [cus].[v_OPEN_SALES_ORDER] AS
+       SELECT 
+      CAST(sol.SALES_ORDER_NO AS NVARCHAR(128))           AS [SALES_ORDER_NO],
+      CAST(sol.PRODUCT_ITEM_NO AS NVARCHAR(255))                  AS [ITEM_NO],
+      CAST(sol.LOCATION_NO AS NVARCHAR(255))              AS [LOCATION_NO],
+      CAST(SUM(
+			CASE 
+                WHEN ISNUMERIC(sol.QUANTITY) = 1 THEN CAST(sol.QUANTITY AS DECIMAL(18,4))
+                ELSE 0 
+            END ) 
+        AS DECIMAL(18,4)
+    ) AS [QUANTITY],
+      CAST(so.CUSTOMER_NO AS NVARCHAR(255))               AS [CUSTOMER_NO],
+      CAST(ISNULL(TRY_CONVERT(DATE, sol.DELIVERY_DATE, 103), GETDATE()) AS DATE) AS [DELIVERY_DATE]
+  FROM 
+      [cus].[AGR_SALES_ORDERS_LINE] sol
+	  INNER JOIN [cus].[AGR_SALES_ORDERS] so ON so.NO=sol.SALES_ORDER_NO
+  GROUP BY 
+      sol.SALES_ORDER_NO, 
+      sol.PRODUCT_ITEM_NO,
+      sol.LOCATION_NO,
+      sol.DELIVERY_DATE,
+	  so.CUSTOMER_NO

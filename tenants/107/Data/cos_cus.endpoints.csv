@@ -1,0 +1,5 @@
+id,step_name,endpoint,endpoint_schema,task_type,db_schema,db_table,priority,is_active,pre_sql_exec,pre_sql,select_sql,from_sql,where_sql,post_sql,columns_to_merge
+15,"AGR_STOCK_HISTORY","AGR_STOCK_HISTORY","dbo",0,"cos","AGR_STOCK_HISTORY",15,True,,,,,,,"[TRANSACTION_ID],[ITEM_NO],[LOCATION_NO],[DATE],[STOCK_MOVE],[STOCK_LEVEL]"
+50000,"AGR_SALES_HISTORY","AGR_SALES_HISTORY","dbo",0,"cos_cus","AGR_SALES_HISTORY",1,True,,,,,,,
+50001,"AGR_SALES_ORDERS","AGR_SALES_ORDER","dbo",0,"cos","AGR_SALES_ORDERS",2,True,,,"SALES_ORDER_NO AS NO, LOCATION_NO, CUSTOMER_NO, DELIVERY_DATE, DELIVERY_STATUS",,,,
+50002,"AGR_BOM_CONSUMPTION_HISTORY","AGR_BOM_CONSUMPTION_HISTORY","dbo",0,"cos_cus","AGR_BOM_CONSUMPTION_HISTORY",13,True,,,"ITEM_NO, LOCATION_NO, SALE_DATE AS DATE, UNIT_QTY",,,,

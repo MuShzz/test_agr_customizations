@@ -1,0 +1,16 @@
+CREATE TABLE [cus].[StcBal] (
+    [ProdNo] NVARCHAR(250) NOT NULL,
+    [StcNo] NVARCHAR(250) NOT NULL,
+    [NrmSup] NVARCHAR(250) NOT NULL,
+    [NrmLoc] NVARCHAR(250) NOT NULL,
+    [PurcProc] NVARCHAR(250) NULL,
+    [MinBalD] DECIMAL(18,4) NULL,
+    [Bal] DECIMAL(18,4) NULL,
+    [StcInc] DECIMAL(18,4) NULL,
+    [MinBal] NVARCHAR(250) NULL,
+    [EcPurcQ] NVARCHAR(250) NULL,
+    [PhCstPr] DECIMAL(18,4) NULL,
+    [LSaleDt] NVARCHAR(250) NULL,
+    [MaxBal] NVARCHAR(250) NULL,
+    CONSTRAINT [PK_cus_StcBal] PRIMARY KEY (NrmSup,ProdNo,StcNo)
+);

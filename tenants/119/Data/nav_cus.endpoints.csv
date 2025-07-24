@@ -1,0 +1,7 @@
+id,step_name,endpoint,task_type,db_schema,db_table,priority,is_active,pre_sql_exec,pre_sql,select_sql,from_sql,where_sql,post_sql
+2,"ItemCategory","Item Category",0,"nav","ItemCategory",2,True,,,"[Code],CONCAT([Code], ' - ',[Description]) AS [Description]",,,
+50001,"Division","Division",0,"nav_cus","Division",50001,True,,,,,,
+50002,"OverrideRawDataItems","Item",0,"nav_cus","OverrideRawData_Item",50002,True,,,"[No_],[Attrib 4 Code],[Division Code]",,,
+50003,"ItemStatusLink","Item Status Link",0,"nav_cus","ItemStatusLink",50003,True,,,,,,
+50004,"DiscountLedgerEntry","Discount Ledger Entry",0,"nav_cus","DiscountLedgerEntry",50004,True,,,,,,
+50005,"CustomColumnItems","Item",0,"nav_cus","CustomColumns_Item",50005,True,,,,,,

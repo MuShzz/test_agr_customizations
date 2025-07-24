@@ -1,0 +1,13 @@
+id,step_name,endpoint,endpoint_body,task_type,db_schema,db_table,priority,is_active,pre_sql_exec,pre_sql,select_sql,from_sql,where_sql,post_sql,columns_to_merge
+2,"Vendor","114","[{ \"name\": \"\", \"value\": \"\"}]",0,"cus","Vendor",2,True,,,,,,,
+3,"Undelivered","113","[{ \"name\": \"\", \"value\": \"\"}]",0,"cus","Undelivered",3,True,,,,,,,
+4,"Stock_Level","112","[{ \"name\": \"\", \"value\": \"\"}]",0,"cus","Stock_Level",4,True,,,,,,,
+5,"Stock_History","111","[{ \"name\": \"@days\", \"value\": 10}]",7,"cus","Stock_History",5,True,,,,,,,
+6,"Sales_History","110","[{ \"name\": \"@days\", \"value\": 10}]",7,"cus","Sales_History",6,True,,,,,,,
+7,"Open_Sales_Order","103","[{ \"name\": \"\", \"value\": \"\"}]",0,"cus","Open_Sales_Order",7,True,,,,,,,
+8,"Location","109","[{ \"name\": \"\", \"value\": \"\"}]",0,"cus","Location",8,True,,,,,,,
+9,"Item_Group","108","[{ \"name\": \"\", \"value\": \"\"}]",0,"cus","Item_Group",9,True,,,,,,,
+10,"Item","107","[{ \"name\": \"\", \"value\": \"\"}]",0,"cus","Item",10,True,,,,,,,
+11,"Customer","106","[{ \"name\": \"\", \"value\": \"\"}]",0,"cus","Customer",11,True,,,,,,,
+12,"BOM_Consumption_History","105","[{ \"name\": \"@days\", \"value\": 10}]",7,"cus","BOM_Consumption_History",12,True,,,,,,,
+13,"BOM_Component","104","[{ \"name\": \"\", \"value\": \"\"}]",0,"cus","BOM_Component",13,True,,,,,,,

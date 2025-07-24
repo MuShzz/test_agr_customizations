@@ -1,0 +1,12 @@
+
+CREATE VIEW  [cus].[v_CC_finished_goods]
+AS
+
+	SELECT
+		CAST(il.ITEM_NO AS NVARCHAR(255))		AS [ITEM_NO],
+		CAST(il.LOCATION_NO AS NVARCHAR(255))   AS [LOCATION_NO],
+		CAST(IIF(il.SALE_PRICE=0,0,1) AS bit)	AS finishedGoods
+	FROM
+		cus.v_ITEM_LOCATION il
+
+

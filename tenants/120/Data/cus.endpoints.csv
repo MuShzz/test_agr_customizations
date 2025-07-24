@@ -1,0 +1,23 @@
+id,step_name,endpoint,endpoint_schema,task_type,db_schema,db_table,priority,is_active,pre_sql_exec,pre_sql,select_sql,from_sql,where_sql,post_sql,columns_to_merge
+1,"Items","OITM",,0,"cus","OITM",1,True,,,,,,,
+2,"ItemPrices","ITM1",,0,"cus","ITM1",2,True,,,,,,,"[ItemCode],[PriceList],[Price],[Currency],[Ovrwritten],[Factor],[LogInstanc],[ObjType],[AddPrice1],[Currency1],[AddPrice2],[Currency2],[Ovrwrite1],[Ovrwrite2],[BasePLNum],[UomEntry],[PriceType]"
+3,"Vendors","OCRD",,0,"cus","OCRD",3,True,,,,,,,"[CardCode],[CardName],[CardType],[GroupCode],[CmpPrivate],[Address],[ZipCode],[frozenFor],[frozenFrom],[frozenTo],[SlpCode],[Currency],[MailAddres],[U_LeadTime]"
+4,"StockLevel","OIBT",,0,"cus","OIBT",4,True,,,,,,,"[ItemCode],[BatchNum],[WhsCode],[ItemName],[SuppSerial],[IntrSerial],[ExpDate],[PrdDate],[InDate],[Located],[Quantity],[BaseType],[BaseEntry],[BaseNum],[BaseLinNum],[CardCode],[CardName],[CreateDate],[Status],[Direction],[IsCommited],[OnOrder],[Consig],[DataSource],[UserSign],[Transfered],[Instance],[SysNumber],[LogInstanc],[UserSign2],[UpdateDate] "
+5,"SaleHistory","OINM",,7,"cus","OINM",5,True,,,,,,,
+6,"ItemGroups","OITB",,0,"cus","OITB",6,True,,,,,,,"[ItmsGrpCod],[ItmsGrpNam],[Locked],[DataSource]"
+7,"PurchaseOrderHeaders","OPOR",,0,"cus","OPOR",7,True,,,,,,,"[DocEntry],[DocNum],[DocType],[CANCELED],[Handwrtten],[Printed],[DocStatus],[InvntSttus],[Transfered],[ObjType],[DocDate],[DocDueDate],[CardCode],[CardName],[Address],[NumAtCard]"
+8,"SalesOrderHeaders","ORDR",,0,"cus","ORDR",8,True,,,,,,,
+9,"ItemExtraInfo","OSLP",,0,"cus","OSLP",9,True,,,,,,,"[SlpCode],[SlpName],[Memo]"
+10,"PurchaseOrderLines","POR1",,0,"cus","POR1",10,True,,,,,,,"[DocEntry],[LineNum],[TargetType],[TrgetEntry],[BaseRef],[BaseType],[BaseEntry],[BaseLine],[LineStatus],[ItemCode],[Dscription],[Quantity],[ShipDate],[OpenQty],[Price],[Currency],[Rate],[DiscPrcnt],[LineTotal],[TotalFrgn],[OpenSum],[OpenSumFC],[VendorNum],[SerialNum],[WhsCode],[SlpCode],[Commission],[TreeType],[AcctCode],[TaxStatus],[GrossBuyPr],[PriceBefDi],[DocDate],[Flags],[OpenCreQty],[InvQty],[OpenInvQty],[UseBaseUn]"
+11,"SalesOrderLines","RDR1",,0,"cus","RDR1",11,True,,,,,,,"[DocEntry],[LineNum],[LineStatus],[ItemCode],[Dscription],[Quantity],[ShipDate],[OpenQty],[Price],[Currency],[Rate],[WhsCode],[DocDate],[Flags],[OpenCreQty],[OpenInvQty],[TargetType],[ObjType]"
+12,"Locations","OADM",,0,"cus","OADM",12,True,,,,,,,"[Code],[CompnyName],[CompnyAddr],[Country],[PrintHeadr],[Phone1],[Phone2],[Fax],[E_Mail],[Manager],[CompType],[MainCurncy],[SysCurrncy],[DispPosDeb]"
+13,"LocationsWarehouses","OWHS",,0,"cus","OWHS",13,True,,,,,,,"[WhsCode],[WhsName],[IntrnalKey],[Grp_Code],[BalInvntAc],[Locked],[VatGroup],[Street],[Block],[ZipCode],[City],[County],[Country],[State],[Location],[SaleCostAc]"
+14,"PriceList","OPLN",,0,"cus","OPLN",14,True,,,,,,,"[ListNum],[ListName],[BASE_NUM],[Factor]"
+15,"ItemsWarehouses","OITW",,0,"cus","OITW",15,True,,,,,,,"[ItemCode],[WhsCode],[OnHand],[IsCommited],[OnOrder],[Consig],[Counted],[WasCounted],[UserSign],[MinStock],[MaxStock],[MinOrder],[AvgPrice],[Locked],[BalInvntAc]"
+16,"TransferOrderHeader","OWTQ",,0,"cus","OWTQ",16,True,,,,,,,"[DocEntry],[DocNum],[DocType],[CANCELED],[DocStatus],[InvntSttus],[Transfered],[DocDate],[DocDueDate],[CardCode],[CardName]"
+17,"TransferOrderLines","WTQ1",,0,"cus","WTQ1",17,True,,,,,,,"[DocEntry],[LineNum],[LineStatus],[ItemCode],[Dscription],[Quantity],[ShipDate],[OpenQty],[Price],[Currency],[Rate],[WhsCode],[FromWhsCod],[DocDate],[Flags],[OpenCreQty],[OpenInvQty],[TargetType]"
+18,"Invoices","INV1",,0,"cus","INV1",18,True,,,,,,,
+19,"InvoicesHeaders","OINV",,0,"cus","OINV",19,True,,,,,,,
+20,"ItemGroups","@TRC_COLL_ITM_GROUP",,0,"cus","@TRC_COLL_ITM_GROUP",20,True,,,,,,,
+21,"Collections","@TRC_COLLECTION",,0,"cus","@TRC_COLLECTION",21,True,,,,,,,
+50000,"OverrideRawDataItems","OITM",,0,"cus","OverrideRawData_Item",50000,True,,,,,,,

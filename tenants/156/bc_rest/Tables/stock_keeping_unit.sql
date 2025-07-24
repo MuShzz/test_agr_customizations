@@ -1,0 +1,21 @@
+CREATE TABLE [bc_rest_cus].[stock_keeping_unit] (
+    [ItemNo] NVARCHAR(50) NOT NULL,
+    [LocationCode] NVARCHAR(50) NOT NULL,
+    [VariantCode] NVARCHAR(10) NOT NULL,
+    [UnitCost] DECIMAL(38,20) NOT NULL,
+    [ReplenishmentSystem] NVARCHAR(50) NOT NULL,
+    [TransferfromCode] NVARCHAR(50) NULL,
+    [LeadTimeCalculation] NVARCHAR(32) NOT NULL,
+    [MinimumOrderQuantity] DECIMAL(18,4) NOT NULL,
+    [SafetyStockQuantity] DECIMAL(18,4) NOT NULL,
+    [OrderMultiple] DECIMAL(18,4) NOT NULL,
+    [ReorderPoint] DECIMAL(38,20) NOT NULL,
+    [MaximumInventory] DECIMAL(38,20) NOT NULL,
+    [VendorNo] NVARCHAR(50) NOT NULL,
+    [BlockPurchasing] NVARCHAR(50) NOT NULL,
+    [BlockTransferring] NVARCHAR(50) NOT NULL,
+    [ExcludeFromReplenishment] NVARCHAR(50) NOT NULL,
+    [TransferMultiple] DECIMAL(18,4) NOT NULL,
+    [ReplenishmentMethod] NVARCHAR(50) NOT NULL,
+    CONSTRAINT [pk_bc_rest-cus_stock_keeping_unit] PRIMARY KEY (ItemNo,LocationCode,VariantCode)
+);

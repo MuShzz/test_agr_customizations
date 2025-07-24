@@ -1,0 +1,32 @@
+CREATE VIEW [ax_cus].[v_ITEM_LOCATION] AS
+
+	SELECT DISTINCT
+        ITEM_NO,
+        LOCATION_NO,
+        SAFETY_STOCK_UNITS,
+        MIN_DISPLAY_STOCK,
+        MAX_STOCK,
+        CLOSED_FOR_ORDERING,
+        RESPONSIBLE,
+        NAME,
+        DESCRIPTION,
+        PRIMARY_VENDOR_NO,
+        PURCHASE_LEAD_TIME_DAYS,
+        TRANSFER_LEAD_TIME_DAYS,
+        ORDER_FREQUENCY_DAYS,
+        ORDER_COVERAGE_DAYS,
+        MIN_ORDER_QTY,
+        ORIGINAL_NO,
+        SALE_PRICE,
+        COST_PRICE,
+        PURCHASE_PRICE,
+        ORDER_MULTIPLE,
+        QTY_PALLET,
+        VOLUME,
+        WEIGHT,
+        REORDER_POINT,
+        INCLUDE_IN_AGR,
+        CLOSED,
+        SPECIAL_ORDER,
+        COMPANY
+	FROM ax_cus.ITEM_LOCATION

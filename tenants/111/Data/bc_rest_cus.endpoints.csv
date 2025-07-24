@@ -1,0 +1,3 @@
+id,step_name,endpoint,task_type,db_schema,db_table,endpoint_filter,priority,is_active,post_sql
+50000,"cus_Items_ExtraInfo","AGRItem",0,"bc_rest_cus","ItemExtraInfo",,50000,True,
+50001,"cc_ile","AGRItemLedgerEntry",0,"bc_rest_cus","CC_ile",,50001,True,

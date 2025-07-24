@@ -1,0 +1,9 @@
+id,step_name,endpoint,task_type,db_schema,db_table,priority,is_active,pre_sql_exec,pre_sql,select_sql,from_sql,where_sql,post_sql
+11,"ItemUnitOfMeasure","Item Unit of Measure",0,"nav_cus","ItemUnitofMeasure",11,True,,,,,,
+50000,"ILEExtraInfo","Item Ledger Entry",0,"nav_cus","ILEExtraInfo",50000,True,,,,,"[Open] = 1",
+50001,"PendingSalesOrderLine","Pending Sales Order Line",0,"nav_cus","PendingSalesOrderLine",50001,True,,,,,,
+50002,"DimensionValue","Dimension Value",0,"nav_cus","DimensionValue",50002,True,,,,,,
+50003,"ItemExtraInfo","Item",0,"nav_cus","ItemExtraInfo",50003,True,,,,,,
+50004,"SalesLineDiscount","Sales Line Discount",0,"nav_cus","SalesLineDiscount",50004,True,,,,,,
+50005,"SalesPrice","Sales Price",0,"nav_cus","SalesPrice",50005,True,,,,,,
+50006,"Lyfjaverdskra","Lyfjaverðskrá",0,"nav_cus","cc_lyfjaverdskra",50006,True,,,,,,

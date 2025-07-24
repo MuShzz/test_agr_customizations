@@ -1,0 +1,5 @@
+id,step_name,endpoint,task_type,db_schema,db_table,endpoint_filter,priority,is_active,post_sql
+7,"SKU","AGRStockKeepingUnit",0,"bc_rest_cus","stock_keeping_unit","?$select=ItemNo,LocationCode,UnitCost,ReplenishmentSystem,TransferfromCode,VariantCode,LeadTimeCalculation,MinimumOrderQuantity,OrderMultiple,ReorderPoint,MaximumInventory,VendorNo,SafetyStockQuantity,ReorderingPolicy",7,True,
+10,"BOMComponent","AGRBOMComponent",0,"bc_rest","bom_component",,10,False,
+5003,"ProdOrderComponent","AGRProdOrderComponent",0,"bc_rest_cus","prod_order_component",,5003,True,
+5004,"ProdOrderLine","AGRProdOrderLine",0,"bc_rest_cus","prod_order_line",,5004,True,

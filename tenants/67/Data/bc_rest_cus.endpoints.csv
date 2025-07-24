@@ -1,0 +1,15 @@
+id,step_name,endpoint,task_type,db_schema,db_table,endpoint_filter,priority,is_active,post_sql
+3,"ItemLedgerEntry","AGRItemLedgerEntry",7,"bc_rest","item_ledger_entry","?$select=EntryNo,ItemNo,PostingDate,EntryType,LocationCode,Quantity,RemainingQuantity,InvoicedQuantity,QtyperUnitofMeasure,UnitofMeasureCode,VariantCode,SourceNo,DocumentNo,ExpirationDate,LotNo",1,True,"UPDATE [bc_rest].[item_ledger_entry] SET LocationCode = 'WEB' WHERE LocationCode = ''"
+5,"Locations","AGRLocation",0,"bc_rest","location","?$select=Code,Name,City,PostCode,County",5,True,"INSERT INTO bc_rest.location ([Code], [Name], [City], [PostCode], [County]) VALUES('WEB', 'Web Store', '', '', '' )"
+6,"PurchaseLine","AGRPurchaseLine",0,"bc_rest","purchase_line","?$select=DocumentType,DocumentNo,LineNo,BuyfromVendorNo,Type,No,LocationCode,ExpectedReceiptDate,Description,Description2,UnitofMeasureCode,Quantity,OutstandingQuantity,QtytoInvoice,QuantityReceived,QuantityBase,OutstandingQtyBase,VariantCode,DropShipment",6,True,"UPDATE [bc_rest].[purchase_line] SET LocationCode = 'WEB' WHERE LocationCode = ''"
+7,"SKU","AGRStockkeepingUnit",0,"bc_rest","stock_keeping_unit","?$select=ItemNo,LocationCode,UnitCost,ReplenishmentSystem,TransferfromCode,VariantCode,LeadTimeCalculation,MinimumOrderQuantity,OrderMultiple,ReorderPoint,MaximumInventory,VendorNo,SafetyStockQuantity",7,True,
+11,"ItemUnitOfMeasure","AGRItemUnitofMeasure",0,"bc_rest","item_unit_of_measure",,11,True,
+16,"PurchRcptHeader","AGRPurchRcptHeader",0,"bc_rest_cus","purch_rcpt_header","?$select=BuyfromVendorNo,DocumentDate,DueDate,ExpectedReceiptDate,InboundWhseHandlingTime,LeadTimeCalculation,LocationCode,No,OrderDate,OrderNo,PostingDate,PostingDescription,PromisedReceiptDate,PurchaserCode,RequestedReceiptDate,ShiptoName",16,True,
+18,"SalesLines","AGRSalesLine",0,"bc_rest","sales_line","?$select=DocumentType,DocumentNo,LineNo,Quantity,VariantCode,ItemReferenceNo,LocationCode,No,OutstandingQtyBase,PurchaseOrderNo,PurchOrderLineNo,ShipmentDate,DropShipment",18,True,"UPDATE [bc_rest].[sales_line] SET LocationCode = 'WEB' WHERE LocationCode = ''"
+19,"SalesOrder","AGRSalesHeader",0,"bc_rest","sales_header","?$select=DocumentType,No,Status,LocationCode,SelltoCustomerNo,PromisedDeliveryDate,RequestedDeliveryDate",19,True,"UPDATE [bc_rest].[sales_header] SET LocationCode = 'WEB' WHERE LocationCode = ''"
+20,"UnitOfMeasure","AGRUnitofMeasure",0,"bc_rest","unit_of_measure",,20,True,
+25,"AGRApiOrderLines","AGRApiOrderLines",0,"bc_rest","agr_api_order_lines",,25,False,
+26,"AGRApiOrderHeader","AGRApiOrderHeader",0,"bc_rest","agr_api_order_header",,26,False,
+27,"AGRSetup","AGRSetup",0,"bc_rest","agr_setup",,27,False,
+28,"AGRLog","AGRLog",0,"bc_rest","agr_log",,28,False,
+99,"CustomColumnItems","AGRItem",0,"bc_rest_cus","CustomColumns_Item","?$select=No,Webactive,RemovedFromWeb,StandardCost,UnitsperParcel",99,True,

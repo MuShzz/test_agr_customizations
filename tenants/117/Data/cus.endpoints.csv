@@ -1,0 +1,31 @@
+id,step_name,endpoint,task_type,source_schema,source_table,target_schema,target_table,endpoint_filter,priority,is_active,post_sql,where_sql
+1,"Customer","Erp.BO.CustomerSvc/Customers",0,"dbo","Customer","cus","Customer","?$select=CustID,CustNum,Name,Customer_fulfilsite_c",1,True,,
+2,"Parts","Erp.BO.PartSvc/Parts",0,"dbo","Part","cus","Part","?$select=PartNum,ClassID,IUM,PUM,PartDescription,ProdCode,GrossWeight,GrossWeightUOM,FSSalesUnitPrice,Part_FFS_Overide_c,InActive,CostMethod,UnitPrice",2,True,,
+3,"PartRevs","Erp.BO.PartSvc/PartRevs",0,"dbo","PartRev","cus","PartRev","?$select=PartNum,RevisionNum,TLRLaborCost,TLRBurdenCost,TLRMaterialCost,TLRSubcontractCost,TLRMtlBurCost,TLRSetupLaborCost,TLRSetupBurdenCost,LLRLaborCost,LLRBurdenCost,LLRMaterialCost,LLRSubcontractCost,LLRSubcontractCost,LLRMtlBurCost,LLRSetupLaborCost,LLRSetupBurdenCost",3,True,,
+4,"PartPlants","Erp.BO.PartSvc/PartPlants",0,"dbo","PartPlant","cus","PartPlant","?$select=PartNum,Plant,BuyerID,LeadTime,MaximumQty,MinimumQty,MinOrderQty,VendorNum,VendorNumVendorID,TransferPlant,ReOrderLevel,SafetyQty,InActive",4,True,,
+5,"PartTrans","Erp.BO.PartTranSvc/PartTrans",7,"erp","PartTran","cus","PartTran","?$select=TranNum,PartNum,Plant,WareHouseCode,CustNum,ActTranQty,TranDate,ActTransUOM,LegalNumber,TranDate,TranQty,TranClass,TranType,InventoryTrans",5,True,,"[TranType] <> 'ADJ-CST'"
+6,"PartWhses","Erp.BO.PartSvc/PartWhses",0,"erp","PartWhse","cus","PartWhse","?$select=PartNum,Plant,WarehouseCode,OnHandQty,AllocatedQty",6,True,,
+7,"PlantWhse",,0,"erp","PlantWhse","cus","PlantWhse",,7,True,,
+8,"Plants","Erp.BO.PlantSvc/Plants",0,"dbo","Plant","cus","Plant","?$select=Plant1,Name",8,True,,
+9,"POes","Erp.BO.POSvc/POes",0,"dbo","POHeader","cus","POHeader","?$select=PONum,OrderDate,OpenOrder,VendorNum,ShipName&$filter=OpenOrder eq true and VoidOrder eq false",9,True,,"[OpenOrder] = 1 and [VoidOrder] = 0"
+10,"PODetails","Erp.BO.POSvc/PODetails",0,"dbo","PODetail","cus","PODetail","?$PONUM,POLine,PartNum,DueDate,OrderQty&$filter=OpenLine eq true and VoidLine eq false",10,True,,"[OpenLine] = 1 and [VoidLine] = 0"
+11,"SalesOrders","Erp.BO.SalesOrderSvc/SalesOrders",0,"dbo","OrderHed","cus","OrderHed","?$select=OrderNum,CustNum,Plant&$filter=OpenOrder eq true and VoidOrder eq false",11,True,,"[OpenOrder] = 1 and [VoidOrder] = 0"
+12,"SalesOrderLines","Erp.BO.SalesOrderSvc/OrderDtls",0,"dbo","OrderDtl","cus","OrderDtl","?$select=OrderNum,OrderLine,NeedByDate,PartNum,SellingQuantity&$filter=OpenLine eq true and VoidLine eq false",12,True,,"[OpenLine] = 1 and [VoidLine] = 0"
+13,"ProdGrups","Erp.BO.ProdGrupSvc/ProdGrups",0,"dbo","ProdGrup","cus","ProdGrup","?$select=ProdCode,Description,Plant",13,True,,
+14,"TFOrdDtlSearches","Erp.BO.TFOrdDtlSearchSvc/TFOrdDtlSearches",0,"erp","TFOrdDtl","cus","TFOrdDtl","?$select=TFOrdNum,TFOrdLine,PartNum,Plant,ToPlant,RequestDate,NeedByDate,OurStockQty,OurStockQtyUOM,ReceivedQty&$filter=OpenLine eq true",14,True,,
+15,"Vendors","Erp.BO.VendorSvc/Vendors",0,"dbo","Vendor","cus","Vendor","?$select=VendorID,VendorNum,Name,Inactive",15,True,,
+16,"Warehses","Erp.BO.WarehseSvc/Warehses",0,"dbo","Warehse","cus","Warehse","?$select=WarehouseCode,Description,Name,Plant",16,True,,
+17,"PriceLstParts","Erp.BO.PriceLstSvc/PriceLstParts",0,"erp","PriceLstParts","cus","PriceLstParts","?$select=PartNum,ListCode,BasePrice,UOMCode,CommentText,CurrencyCode&$filter=ListCode eq '103'",17,True,,"[ListCode] = '113'"
+18,"PartCostSearches","Erp.BO.PartCostSearchSvc/PartCostSearches",0,"erp","PartCost","cus","PartCost","?$select=PartNum,CostID,AvgLaborCost,AvgBurdenCost,AvgMaterialCost,AvgSubContCost,AvgMtlBurCost,StdLaborCost,StdBurdenCost,StdMaterialCost,StdSubContCost,StdMtlBurCost",18,True,,
+19,"VendParts","Erp.BO.VendPartSvc/VendParts",0,"dbo","VendPart","cus","VendPart","?$select=VenPartNum,PartNum,VendorNum,BaseUnitPrice,LeadTime,EffectiveDate,PrimaryVendor",19,True,,
+20,"BOM",,0,"dbo","ECOMtl","cus","ECOMtl",,20,True,,
+21,"PartsCC",,0,"dbo","Part","cus","Part_CustomColumns",,21,True,,
+22,"PartPlantCC",,0,"dbo","PartPlant","cus","PartPlant_CustomColumns",,22,True,,
+23,"PartClass",,0,"dbo","PartClass","cus","PartClass","?$select=ClassId,Description",23,True,,
+24,"BOMPart",,0,"dbo","PartMtl","cus","PartMtl",,24,True,,
+25,"PORels","Erp.BO.POSvc/PORels",0,"dbo","PORel","cus","PORels","?$PONum,POLine,XRelQty,DueDate,RelQty&$filter=OpenLine eq true and VoidLine eq false",25,True,,
+26,"JobHead",,0,"erp","JobHead","cus","JobHead",,26,True,,
+27,"JobMtl",,0,"erp","JobMtl","cus","JobMtl",,27,True,,
+28,"OrderRel",,0,"erp","OrderRel","cus","OrderRel",,28,True,,
+29,"PartXRefVend",,0,"erp","PartXRefVend","cus","PartXRefVend",,29,True,,
+30,"JobPart","JobPart",0,"erp","JobPart","cus","JobPart",,30,True,,

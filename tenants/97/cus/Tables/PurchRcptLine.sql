@@ -1,0 +1,22 @@
+CREATE TABLE [cus].[PurchRcptLine] (
+    [Document No_] NVARCHAR(20) NOT NULL,
+    [Line No_] INT NOT NULL,
+    [Buy-from Vendor No_] NVARCHAR(20) NOT NULL,
+    [Entry Point] NVARCHAR(10) NOT NULL,
+    [Expected Receipt Date] DATE NOT NULL,
+    [Inbound Whse_ Handling Time] VARCHAR(32) NOT NULL,
+    [Lead Time Calculation] VARCHAR(32) NOT NULL,
+    [Location Code] NVARCHAR(10) NOT NULL,
+    [No_] NVARCHAR(20) NOT NULL,
+    [Order Date] DATE NOT NULL,
+    [Order Line No_] INT NOT NULL,
+    [Order No_] NVARCHAR(20) NOT NULL,
+    [Pay-to Vendor No_] NVARCHAR(20) NOT NULL,
+    [Planned Receipt Date] DATE NOT NULL,
+    [Posting Date] DATE NOT NULL,
+    [Unit of Measure Code] VARCHAR(10) NOT NULL,
+    [Quantity] DECIMAL(38,20) NOT NULL,
+    [Quantity (Base)] DECIMAL(38,20) NOT NULL,
+    [Company] NVARCHAR(3) NOT NULL,
+    CONSTRAINT [PK_cus_purchase_rcpt_line] PRIMARY KEY (Company,Document No_,Line No_)
+);

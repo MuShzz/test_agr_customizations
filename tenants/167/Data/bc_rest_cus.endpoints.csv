@@ -1,0 +1,3 @@
+id,step_name,endpoint,task_type,db_schema,db_table,endpoint_filter,priority,is_active,post_sql
+50000,"ItemsExtraInfo","AGRItem",0,"bc_rest_cus","item_extra_info","?$select=No,UnitListPrice",50000,True,
+50001,"CustomColumns_Item","NPXBASItemInfo",0,"bc_rest_cus","CustomColumns_Item",,50001,True,

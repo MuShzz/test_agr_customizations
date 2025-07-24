@@ -1,0 +1,4 @@
+id,step_name,endpoint,task_type,db_schema,db_table,endpoint_filter,priority,is_active,post_sql
+10,"BOMComponent","AGRBOMComponent",0,"bc_rest","bom_component",,10,False,
+21,"ProductionBOMHeader","AGRProdBOMHeader",0,"bc_rest","production_bom_header",,21,False,
+22,"ProductionBOMLine","AGRProdBOMLine",0,"bc_rest","production_bom_line","?$select=ProductionBOMNo,VersionCode,LineNo,Type,No,Description,UnitofMeasureCode,Quantity,Quantityper",22,False,

@@ -1,0 +1,5 @@
+CREATE TABLE [cus].[@LEVKODE] (
+    [Code] NVARCHAR(50) NOT NULL,
+    [Name] NVARCHAR(100) NOT NULL,
+    CONSTRAINT [PK_erp_cus_@LEVKODE] PRIMARY KEY (Code)
+);

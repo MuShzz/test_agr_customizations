@@ -1,0 +1,20 @@
+CREATE TABLE [visma_sql_cus].[PrDcMat] (
+    [LnNo] NVARCHAR(250) NOT NULL,
+    [OrdNo] NVARCHAR(50) NULL,
+    [ProdNo] NVARCHAR(50) NULL,
+    [SalePr] DECIMAL(18,4) NULL,
+    [SaleDcP] DECIMAL(18,4) NULL,
+    [CustNo] NVARCHAR(250) NULL,
+    [Inf] NVARCHAR(255) NULL,
+    [FrDt] NVARCHAR(250) NOT NULL,
+    [ToDt] NVARCHAR(250) NOT NULL,
+    [Cur] NVARCHAR(250) NOT NULL,
+    [EmpNo] NVARCHAR(50) NOT NULL,
+    [ProdPrGr] NVARCHAR(250) NOT NULL,
+    [CustPrGr] NVARCHAR(250) NOT NULL,
+    [PurcPr] DECIMAL(18,4) NOT NULL,
+    [SupNo] NVARCHAR(250) NOT NULL,
+    [PurcCur] NVARCHAR(250) NOT NULL,
+    [PurcDcP] DECIMAL(18,4) NOT NULL,
+    CONSTRAINT [PK_visma_sql_cus_PrDcMat] PRIMARY KEY (LnNo)
+);

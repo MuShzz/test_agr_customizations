@@ -1,0 +1,5 @@
+id,step_name,endpoint,endpoint_schema,task_type,db_schema,db_table,priority,is_active,pre_sql_exec,pre_sql,select_sql,from_sql,where_sql,post_sql
+50001,"A/P Invoice Header Table","OPCH",,0,"sap_b1_cus","OPCH",50001,True,,,,,,
+50002,"A/P Invoice Lines Table","PCH1",,0,"sap_b1_cus","PCH1",50002,True,,,,,,
+50003,"Work Order Header","OWOR",,0,"sap_b1_cus","OWOR",50003,True,,,,,,
+50004,"Work Order Lines","WOR1",,0,"sap_b1_cus","WOR1",50004,True,,,,,,

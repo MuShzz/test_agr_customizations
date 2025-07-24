@@ -1,0 +1,41 @@
+CREATE VIEW [cus].[v_ITEM] AS
+	   SELECT
+        CAST(ii.[Name] AS NVARCHAR(255)) AS [NO],
+        CAST(COALESCE(ii.[PurchaseDesc],ii.FullName) AS NVARCHAR(255)) AS [NAME],
+        CAST(ii.[PurchaseDesc] AS NVARCHAR(255)) AS [DESCRIPTION],
+        CAST(v.ListID AS NVARCHAR(255)) AS [PRIMARY_VENDOR_NO],
+        CAST(NULL AS SMALLINT) AS [PURCHASE_LEAD_TIME_DAYS], 
+        CAST(NULL AS SMALLINT) AS [TRANSFER_LEAD_TIME_DAYS], 
+        CAST(NULL AS SMALLINT ) AS [ORDER_FREQUENCY_DAYS], 
+        CAST(NULL AS SMALLINT ) AS [ORDER_COVERAGE_DAYS], 
+        CAST(1 AS DECIMAL(18,4)) AS [MIN_ORDER_QTY],
+        CAST(ii.ManufacturerPartNumber AS NVARCHAR(50)) AS [ORIGINAL_NO],
+		CAST(ii.[IsActive] AS BIT)^1 AS [CLOSED],
+        CAST(0 AS BIT) AS [CLOSED_FOR_ORDERING],
+        CAST(NULL AS NVARCHAR(255)) AS [RESPONSIBLE], 
+        CAST(ii.[SalesPrice] AS DECIMAL(18,4)) AS [SALE_PRICE],
+        CAST(ii.[PurchaseCost] AS DECIMAL(18,4)) AS [COST_PRICE],
+        CAST(ii.[PurchaseCost] AS DECIMAL(18,4)) AS [PURCHASE_PRICE],
+        CAST(1 AS DECIMAL(18,4)) AS [ORDER_MULTIPLE],
+        CAST(1 AS DECIMAL(18,4)) AS [QTY_PALLET],
+        CAST(NULL AS DECIMAL(18,6)) AS [VOLUME], 
+        CAST(NULL AS DECIMAL(18,6)) AS [WEIGHT], 
+
+        CAST(NULL AS DECIMAL(18,4)) AS [SAFETY_STOCK_UNITS],
+        CAST(NULL AS DECIMAL(18,4)) AS [MIN_DISPLAY_STOCK],
+		
+        CAST(NULL AS DECIMAL(18,4)) AS [MAX_STOCK], 
+        CAST(NULL AS NVARCHAR(255)) AS [ITEM_GROUP_NO_LVL_1], 
+        CAST(NULL AS NVARCHAR(255)) AS [ITEM_GROUP_NO_LVL_2], 
+        CAST(NULL AS NVARCHAR(255)) AS [ITEM_GROUP_NO_LVL_3], 
+        CAST(um.BaseUnitName AS NVARCHAR(50)) AS [BASE_UNIT_OF_MEASURE],
+        CAST(umdu_pu.[DefaultUnitUnit] AS NVARCHAR(50)) AS [PURCHASE_UNIT_OF_MEASURE],
+        CAST(1 AS DECIMAL(18,4)) AS [QTY_PER_PURCHASE_UNIT],
+        CAST(0 AS BIT) AS [SPECIAL_ORDER],
+        CAST(ISNULL(ii.ReorderPoint,0) AS DECIMAL(18,4)) AS [REORDER_POINT],
+		CAST(1 AS BIT) AS [INCLUDE_IN_AGR]
+    FROM cus.ItemInventory ii
+	INNER JOIN cus.Vendor v ON ii.PrefVendorRefListID = v.ListID
+	LEFT JOIN cus.[UnitOfMeasureSet] um ON um.[listID] = ii.[UnitOfMeasureSetRefListID]
+	LEFT JOIN [cus].[UnitOfMeasureSetDefaultUnit] umdu_pu ON um.ListID = umdu_pu.ListID AND umdu_pu.[DefaultUnitUnitUsedFor] = 'Purchase'
+

@@ -1,0 +1,2 @@
+id,step_name,endpoint,task_type,db_schema,db_table,endpoint_filter,priority,is_active,post_sql
+5000,"SKU_Extra_Info","AGRStockKeepingUnit",0,"bc_rest_cus","sku_extra_info","?$select=ItemNo,LocationCode,VariantCode,ReorderingPolicy",5000,True,

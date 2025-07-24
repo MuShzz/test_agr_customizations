@@ -1,0 +1,23 @@
+CREATE TABLE [cus].[purchase_line] (
+    [DocumentType] VARCHAR(20) NOT NULL,
+    [DocumentNo] VARCHAR(20) NOT NULL,
+    [LineNo] INT NOT NULL,
+    [BuyfromVendorNo] VARCHAR(20) NOT NULL,
+    [Type] VARCHAR(20) NOT NULL,
+    [No] VARCHAR(20) NOT NULL,
+    [LocationCode] VARCHAR(10) NOT NULL,
+    [ExpectedReceiptDate] DATETIME2 NOT NULL,
+    [Description] VARCHAR(100) NOT NULL,
+    [Description2] VARCHAR(50) NOT NULL,
+    [UnitofMeasureCode] VARCHAR(50) NOT NULL,
+    [Quantity] DECIMAL(38,20) NOT NULL,
+    [OutstandingQuantity] DECIMAL(38,20) NOT NULL,
+    [QtytoInvoice] DECIMAL(38,20) NOT NULL,
+    [QuantityReceived] DECIMAL(38,20) NOT NULL,
+    [QuantityBase] DECIMAL(38,20) NOT NULL,
+    [OutstandingQtyBase] DECIMAL(38,20) NOT NULL,
+    [VariantCode] VARCHAR(10) NOT NULL,
+    [DropShipment] BIT NOT NULL,
+    [Company] NVARCHAR(100) NOT NULL,
+    CONSTRAINT [pk_cus_purchase_line] PRIMARY KEY (Company,DocumentNo,DocumentType,LineNo)
+);

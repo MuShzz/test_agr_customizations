@@ -1,0 +1,16 @@
+CREATE VIEW [ax_cus].[v_BOM_CONSUMPTION_HISTORY] AS
+SELECT 
+       CAST(iv.NO AS NVARCHAR(255))               AS [ITEM_NO],
+       CAST(id.INVENTLOCATIONID AS NVARCHAR(255)) AS [LOCATION_NO],
+       CAST(it.DATEPHYSICAL AS DATE)              AS [DATE],
+       -CAST(it.QTY AS DECIMAL(18, 4))            AS [UNIT_QTY],
+	   CAST(NULL AS BIGINT)						  AS [TRANSACTION_ID]
+FROM ax.INVENTTRANS it
+         INNER JOIN [ax].INVENTTRANSORIGIN ito ON it.INVENTTRANSORIGIN = ito.RECID AND it.PARTITION = ito.PARTITION AND
+                                                  it.DATAAREAID = ito.DATAAREAID
+         INNER JOIN [ax].INVENTDIM id ON id.INVENTDIMID = it.INVENTDIMID AND id.DATAAREAID = it.DATAAREAID AND
+                                         id.PARTITION = ito.PARTITION
+         INNER JOIN ax_cus.Item_v iv ON iv.No_TO_JOIN_IL = it.ITEMID
+WHERE it.QTY < 0
+  AND ito.REFERENCECATEGORY IN (2, 9, 10)
+

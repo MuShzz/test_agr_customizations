@@ -1,0 +1,9 @@
+CREATE VIEW [cus].[v_CUSTOMER]
+AS
+
+    SELECT
+        CAST([NO] AS NVARCHAR(255))     AS [NO],
+        CAST([NAME] AS NVARCHAR(255))   AS [NAME],
+        CAST(NULL AS NVARCHAR(255))     AS [CUSTOMER_GROUP_NO]
+    FROM [cus].[CUSTOMER]
+
